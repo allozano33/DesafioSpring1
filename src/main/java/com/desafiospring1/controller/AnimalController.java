@@ -1,7 +1,6 @@
 package com.desafiospring1.controller;
 
 import com.desafiospring1.dto.AnimalDto;
-import com.desafiospring1.entity.Animal;
 import com.desafiospring1.service.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,22 +19,21 @@ public class AnimalController {
 
     @PostMapping(value = "/cadastrar")
     public ResponseEntity<AnimalDto> cadastraAnimal(@RequestBody AnimalDto animalDto, UriComponentsBuilder uriBuilder) {
-        Animal animal = animalDto.converte();
-        Animal animalCadastrado = animalService.cadastrar(animal);
+        AnimalDto animalCadastrado = animalService.cadastrar(animalDto);
 
         URI uri = uriBuilder.path("/animal/buscar/{id}").buildAndExpand(animalCadastrado.getId()).toUri();
-        return ResponseEntity.created(uri).body(AnimalDto.converte(animalCadastrado));
+        return ResponseEntity.created(uri).body(animalCadastrado);
     }
 
     @GetMapping("/listar")
-    public List<Animal> listaAnimal(){
+    public List<AnimalDto> listaAnimal(){
         return animalService.listar();
     }
 
     @GetMapping("/buscar/{id}")
-    public Animal buscaAnimalPorId(@PathVariable("id") Long id){
-        Animal animal = animalService.buscaAnimalPorId(id);
-        return animal;
+    public AnimalDto buscaAnimalPorId(@PathVariable("id") Long id){
+        AnimalDto animalDto = animalService.buscaAnimalPorId(id);
+        return animalDto;
     }
 
     //----------------------------Atenção--------------------------------
@@ -43,13 +41,13 @@ public class AnimalController {
     //O mesmo deve ser feito para Medico e proprietario
     //-------------------------------------------------------------------
     @DeleteMapping(value ="/deletar/{id}")
-    public List<Animal> deletaAnimal(@PathVariable("id") Long id) {
+    public List<AnimalDto> deletaAnimal(@PathVariable("id") Long id) {
         return animalService.deletaAnimal(id);
     }
 
     @PutMapping(value ="/atualizar")
-    public Animal atualizarAnimal(@RequestBody Animal animal) {
-        return animalService.atualizaAnimal(animal);
+    public AnimalDto atualizarAnimal(@RequestBody AnimalDto animalDto) {
+        return animalService.atualizaAnimal(animalDto);
     }
 }
 

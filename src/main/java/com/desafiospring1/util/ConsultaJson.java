@@ -1,18 +1,26 @@
 package com.desafiospring1.util;
 
+import com.desafiospring1.entity.Animal;
+import com.desafiospring1.entity.Consulta;
+import com.desafiospring1.entity.Medico;
+import com.desafiospring1.entity.Proprietario;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConsultaJson implements UtilFile<Consulta>{
 
     @Override
-    public String cadastrar(List<Consulta> consulta) {
+    public String manipularJson(List<Consulta> consulta) {
         JSONObject jsonObject = new JSONObject();
 
         FileWriter writeFile = null;
@@ -46,7 +54,7 @@ public class ConsultaJson implements UtilFile<Consulta>{
                 JSONObject consulta = (JSONObject) con;
 
                 con_obj.setId((Long) consulta.get("id"));
-                con_obj.setCodigo((Long) consulta.get("codigo"));
+                con_obj.setCodigo((String) consulta.get("codigo"));
 
                 LocalDateTime dataHora = LocalDateTime.parse((String) consulta.get("dataHora"));
                 con_obj.setDataHora(dataHora);
@@ -59,11 +67,10 @@ public class ConsultaJson implements UtilFile<Consulta>{
 
                 Medico m = new Medico();
                 m.setId((Long) med.get("id"));
-                m.setCrmv((String) med.get("crmv"));
                 m.setCpf((String) med.get("cpf"));
                 m.setNome((String) med.get("nome"));
                 m.setSobrenome((String) med.get("sobrenome"));
-                m.setNumeroDeRegistro((Long) med.get("numeroDeRegistro"));
+                m.setNumeroDeRegistro((String) med.get("numeroDeRegistro"));
                 m.setEspecialidade((String) med.get("especialidade"));
 
                 con_obj.setMedico((Medico) m);
@@ -88,7 +95,7 @@ public class ConsultaJson implements UtilFile<Consulta>{
                 JSONObject pro = (JSONObject) ani.get("proprietario");
 
                 Proprietario p = new Proprietario();
-                p.setId((String) pro.get("id"));
+                p.setId((Long) pro.get("id"));
                 p.setCpf((String) pro.get("cpf"));
                 p.setNome((String) pro.get("nome"));
                 p.setEndereco((String) pro.get("endereco"));

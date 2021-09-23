@@ -1,6 +1,5 @@
 package com.desafiospring1.controller;
 
-import com.desafiospring1.dto.MedicoDto;
 import com.desafiospring1.entity.Medico;
 import com.desafiospring1.service.MedicoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +19,11 @@ public class MedicoController {
     private MedicoService medicoService;
 
     @PostMapping(value = "/cadastrar")
-    public ResponseEntity<MedicoDto> cadastraMedico(@RequestBody MedicoDto medicoDto, UriComponentsBuilder uriBuilder) throws ParseException {
-        MedicoDto medicoDto1 = new MedicoDto();
-        Medico medico = medicoDto1.converte(medicoDto);
+    public ResponseEntity<Medico> cadastraMedico(@RequestBody Medico medico, UriComponentsBuilder uriBuilder) throws ParseException {
         Medico medicoCadastrado = medicoService.cadastrar(medico);
 
         URI uri = uriBuilder.path("/medico/buscar/{id}").buildAndExpand(medicoCadastrado.getId()).toUri();
-        return ResponseEntity.created(uri).body(MedicoDto.converte(medicoCadastrado));
+        return ResponseEntity.created(uri).body(medicoCadastrado);
     }
 
     @GetMapping("/listar")

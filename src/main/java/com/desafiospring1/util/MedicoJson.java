@@ -15,7 +15,7 @@ import java.util.List;
 public class MedicoJson implements UtilFile<Medico>{
 
     @Override
-    public String manipular(List<Medico> medicos) {
+    public String manipularJson(List<Medico> medicos) {
 
         JSONObject jsonObject = new JSONObject();
 
@@ -54,7 +54,7 @@ public class MedicoJson implements UtilFile<Medico>{
                 m.setNome((String) medico.get("nome"));
                 m.setSobrenome((String) medico.get("sobrenome"));
                 m.setEspecialidade((String) medico.get("especialidade"));
-                m.setNumeroDeRegistro((Long) medico.get("numeroDeRegistro"));
+                m.setNumeroDeRegistro((String) medico.get("numeroDeRegistro"));
 
                 medicos.add(m);
             }

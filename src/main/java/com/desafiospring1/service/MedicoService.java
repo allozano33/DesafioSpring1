@@ -11,9 +11,9 @@ public class MedicoService {
 
     private MedicoPersistence persistence = new MedicoPersistence();
 
-    private boolean codigoNaoUtilizado(String crmv) {
+    private boolean codigoNaoUtilizado(String numeroRegistro) {
         for (Medico medico : persistence.listagem()) {
-            if (medico.getCrmv().equals(crmv)) {
+            if (medico.getNumeroDeRegistro().equals(numeroRegistro)) {
                 return false;
             }
         }
@@ -21,7 +21,7 @@ public class MedicoService {
     }
 
     public Medico cadastrar(Medico medico) {
-        if (codigoNaoUtilizado(medico.getCrmv())) {
+        if (codigoNaoUtilizado(medico.getNumeroDeRegistro())) {
             medico.setId(persistence.listagem().size()+1L);
             return persistence.cadastra(medico);
         } else {

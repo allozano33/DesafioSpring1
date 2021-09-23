@@ -1,19 +1,18 @@
 package com.desafiospring1.service;
 
-
-import com.desafiospring1.entity.Animal;
 import com.desafiospring1.entity.Proprietario;
-import com.desafiospring1.persistence.AnimalPersistence;
 import com.desafiospring1.persistence.ProprietarioPersistence;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ProprietarioService {
     private ProprietarioPersistence persistence = new ProprietarioPersistence();
 
-    private boolean codigoNaoUtilizado(String numeroPaciente) {
+    private boolean codigoNaoUtilizado(String cpf) {
         for (Proprietario proprietario : persistence.listagem()) {
-            if (proprietario.getNumeroPaciente().equals(numeroPaciente)) {
+            if (proprietario.getCpf().equals(cpf)) {
                 return false;
             }
         }
@@ -21,7 +20,7 @@ public class ProprietarioService {
     }
 
     public Proprietario cadastrar(Proprietario proprietario) {
-        if (codigoNaoUtilizado(proprietario.getNumeroPaciente())) {
+        if (codigoNaoUtilizado(proprietario.getCpf())) {
             proprietario.setId(persistence.listagem().size()+1L);
             return persistence.cadastra(proprietario);
         } else {
@@ -41,7 +40,7 @@ public class ProprietarioService {
         return persistence.deletaProprietario(id);
     }
 
-    public Animal atualizaProprietario(Proprietario proprietario){
-        return persistence.atualizaProprietario(buscaProprietarioPorId());
+    public Proprietario atualizaProprietario(Proprietario proprietario){
+        return persistence.atualizaProprietario(proprietario);
     }
 }

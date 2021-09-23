@@ -2,7 +2,6 @@ package com.desafiospring1.entity;
 
 import lombok.Data;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data

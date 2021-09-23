@@ -8,14 +8,14 @@ import java.text.ParseException;
 public class Medico extends Pessoa{
 
     private Long id;
-    private Long numeroDeRegistro;
+    private String numeroDeRegistro;
     private String especialidade;
 
     public Medico(){
 
     }
 
-    public Medico(String cpf, String nome, String sobrenome, Long id, Long numeroDeRegistro, String especialidade) throws ParseException {
+    public Medico(String cpf, String nome, String sobrenome, Long id, String numeroDeRegistro, String especialidade) throws ParseException {
         super(cpf, nome, sobrenome);
         this.id = id;
         this.numeroDeRegistro = numeroDeRegistro;

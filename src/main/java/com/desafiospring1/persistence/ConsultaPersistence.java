@@ -1,8 +1,7 @@
 package com.desafiospring1.persistence;
 
-import com.desafiospring1.entity.Animal;
 import com.desafiospring1.entity.Consulta;
-import com.desafiospring1.util.AnimalJson;
+import com.desafiospring1.util.ConsultaJson;
 
 import java.util.ArrayList;
 import java.util.List;

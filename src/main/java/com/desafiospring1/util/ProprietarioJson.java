@@ -5,18 +5,19 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+
 
 public class ProprietarioJson implements UtilFile<Proprietario>{
 
     @Override
-    public String cadastrar(List<Proprietario> proprietarios) {
+    public String manipularJson(List<Proprietario> proprietarios) {
 
         JSONObject jsonObject = new JSONObject();
 
@@ -36,11 +37,6 @@ public class ProprietarioJson implements UtilFile<Proprietario>{
     }
 
     @Override
-    public String manipularJson (java.util.List<Proprietario> obj) {
-        return null;
-    }
-
-    @Override
     public List<Proprietario> listar() {
         List<Proprietario> proprietarios = new ArrayList<>();
         JSONObject jsonObject;
@@ -55,7 +51,7 @@ public class ProprietarioJson implements UtilFile<Proprietario>{
 
                 JSONObject proprietario = (JSONObject) pro;
 
-                pro_obj.setId((String) proprietario.get("id"));
+                pro_obj.setId((Long) proprietario.get("id"));
                 pro_obj.setCpf((String) proprietario.get("cpf"));
                 pro_obj.setNome((String) proprietario.get("nome"));
                 pro_obj.setSobrenome((String) proprietario.get("sobrenome"));

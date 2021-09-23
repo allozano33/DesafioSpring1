@@ -1,7 +1,6 @@
 package com.desafiospring1.util;
 
-import com.desafiospring1.entity.Animal;
-import com.desafiospring1.entity.Proprietario;
+import com.desafiospring1.dto.AnimalDto;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -13,15 +12,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnimalJson implements UtilFile<Animal>{
+public class AnimalJson implements UtilFile<AnimalDto>{
 
     @Override
-    public String manipularJson(List<Animal> animal) {
+    public String manipularJson(List<AnimalDto> animalDto) {
         JSONObject jsonObject = new JSONObject();
 
         FileWriter writeFile = null;
 
-        jsonObject.put("Animal", animal);
+        jsonObject.put("Animal", animalDto);
 
         try {
             writeFile = new FileWriter("animal.json");
@@ -35,8 +34,8 @@ public class AnimalJson implements UtilFile<Animal>{
     }
 
     @Override
-    public List<Animal> listar() {
-        List<Animal> animais = new ArrayList<>();
+    public List<AnimalDto> listar() {
+        List<AnimalDto> animais = new ArrayList<>();
         JSONObject jsonObject;
         JSONParser parser = new JSONParser();
 
@@ -45,7 +44,7 @@ public class AnimalJson implements UtilFile<Animal>{
             JSONArray lista_animais = (JSONArray) jsonObject.get("Animal");
 
             for (Object ani : lista_animais) {
-                Animal ani_obj = new Animal();
+                AnimalDto ani_obj = new AnimalDto();
 
                 JSONObject animal = (JSONObject) ani;
 
@@ -59,21 +58,7 @@ public class AnimalJson implements UtilFile<Animal>{
                 LocalDate dataDeNascimento = LocalDate.parse((String) animal.get("dataDeNascimento"));
                 ani_obj.setDataDeNascimento((dataDeNascimento));
 
-                JSONObject obj = (JSONObject) animal.get("proprietario");
-
-                Proprietario p = new Proprietario();
-                p.setId((Long) obj.get("id"));
-                p.setCpf((String) obj.get("cpf"));
-                p.setNome((String) obj.get("nome"));
-                p.setSobrenome((String) obj.get("sobrenome"));
-
-                LocalDate dataDeNascimentoPro = LocalDate.parse((String) obj.get("dataDeNascimento"));
-                p.setDataDeNascimento((dataDeNascimentoPro));
-
-                p.setEndereco((String) obj.get("endereco"));
-                p.setTelefoneContato((String) obj.get("telefoneContato"));
-
-                ani_obj.setProprietario((Proprietario) p);
+                ani_obj.setId((Long) animal.get("idProprietario"));
 
                 animais.add(ani_obj);
             }
