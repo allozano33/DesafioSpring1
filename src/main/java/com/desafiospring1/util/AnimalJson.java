@@ -58,7 +58,7 @@ public class AnimalJson implements UtilFile<AnimalDto>{
                 LocalDate dataDeNascimento = LocalDate.parse((String) animal.get("dataDeNascimento"));
                 ani_obj.setDataDeNascimento((dataDeNascimento));
 
-                ani_obj.setId((Long) animal.get("idProprietario"));
+                ani_obj.setIdProprietario((Long) animal.get("idProprietario"));
 
                 animais.add(ani_obj);
             }

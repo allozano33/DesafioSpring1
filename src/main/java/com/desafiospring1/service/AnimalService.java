@@ -38,7 +38,6 @@ public class AnimalService {
     }
 
     public List<AnimalDto> deletaAnimal(Long id) {
-
         return persistence.deletaAnimal(id);
     }
 

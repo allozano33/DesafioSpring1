@@ -13,11 +13,9 @@ public class AnimalPersistence {
 
     public AnimalDto cadastra(AnimalDto animalDto) {
         animalDto.setId(animalJson.listar().size() + 1L);
-        for (AnimalDto animais: animalJson.listar()) {
-            listaAnimais.add(animais);
-        }
-        listaAnimais.add(animalDto);
-        animalJson.manipularJson(listaAnimais);
+        List<AnimalDto> novaListaAnimais = animalJson.listar();
+        novaListaAnimais.add(animalDto);
+        animalJson.manipularJson(novaListaAnimais);
         return animalDto;
     }
 

@@ -25,10 +25,10 @@ public class Medico extends Pessoa{
     @Override
     public String toString() {
         return "{" +
+                " \"id\":" + id +
                 ", \"cpf\":\"" + super.getCpf() + "\"" +
                 ", \"nome\":\"" + super.getNome() + "\"" +
                 ", \"sobrenome\":\"" + super.getSobrenome() + "\"" +
-                ", \"id\":\"" + id + "\"" +
                 ", \"numeroDeRegistro\":\"" + numeroDeRegistro + "\"" +
                 ", \"especialidade\":\"" + especialidade + "\"" +
                 "}";

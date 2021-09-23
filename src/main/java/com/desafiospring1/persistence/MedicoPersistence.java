@@ -13,11 +13,9 @@ public class MedicoPersistence {
 
     public Medico cadastra(Medico medico) {
         medico.setId(medicoJson.listar().size() + 1L);
-        for (Medico medicos: medicoJson.listar()) {
-            listaMedicos.add(medicos);
-        }
-        listaMedicos.add(medico);
-        medicoJson.manipularJson(listaMedicos);
+        List<Medico> novaListaMedicos = medicoJson.listar();
+        novaListaMedicos.add(medico);
+        medicoJson.manipularJson(novaListaMedicos);
         return medico;
     }
 

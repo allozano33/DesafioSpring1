@@ -30,4 +30,18 @@ public class AnimalDto {
         this.nome = nome;
         this.idProprietario = idProprietario;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                " \"id\":" + id +
+                ", \"numeroPaciente\":\"" + numeroPaciente + "\"" +
+                ", \"especie\":\"" + especie + "\"" +
+                ", \"raca\":\"" + raca + "\"" +
+                ", \"cor\":\"" + cor + "\"" +
+                ", \"dataDeNascimento\":\"" + dataDeNascimento + "\"" +
+                ", \"nome\":\"" + nome + "\"" +
+                ", \"idProprietario\":" + idProprietario +
+                "}";
+    }
 }
