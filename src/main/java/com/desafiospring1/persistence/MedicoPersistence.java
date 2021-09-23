@@ -1,50 +1,58 @@
-//package com.desafiospring1.persistence;
-//
-//import com.desafiospring1.entity.Medico;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-////classe especializada em realizar persistencia
-//
-//public class MedicoPersistence {
-//
-//    private static List<Medico> lista = new ArrayList<>();
-//
-//
-//    public Medico cadastro(Medico obj) {
-//        obj.setId(obj.size() + 1L);
-//        obj.add(obj);
-//        return obj;
-//    }
-//
-//    public List<Medico> listagem() {
-//        return lista;
-//    }
-//
-//    public Medico obtemAnuncio(Long id) {
-//        for (Medico obj : lista) {
-//            if (obj.getId().equals(id)) {
-//                return obj;
-//            }
-//        }
-//        return null;
-//    }
-//
-//    public void remove(Long id) {
-//        for (Medico obj : lista) {
-//            if (obj.getId().equals(id)) {
-//                lista.remove(obj);
-//            }
-//        }
-//    }
-//
-//    public Medico atualizar(Medico obj) {
-//        for (int i = 0; i < obj.size(); i++) {
-//            if (obj.get(i).getId().equals(obj.getId())) {
-//                obj.set(i, obj);
-//            }
-//        }
-//        return obj;
-//    }
-//}
+package com.desafiospring1.persistence;
+
+import com.desafiospring1.entity.Medico;
+import com.desafiospring1.util.MedicoJson;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MedicoPersistence {
+
+    private MedicoJson medicoJson = new MedicoJson();
+    private static List<Medico> listaMedicos = new ArrayList<>();
+
+    public Medico cadastra(Medico medico) {
+        medico.setId(medicoJson.listar().size() + 1L);
+        for (Medico medicos: medicoJson.listar()) {
+            listaMedicos.add(medicos);
+        }
+        listaMedicos.add(medico);
+        medicoJson.manipularJson(listaMedicos);
+        return medico;
+    }
+
+    public List<Medico> listagem() {
+        return medicoJson.listar();
+    }
+
+    public Medico buscaMedicoPorId(Long id) {
+        for (Medico medico : medicoJson.listar()) {
+            if (medico.getId().equals(id)) {
+                return medico;
+            }
+        }
+        return null;
+    }
+
+    public List<Medico> deletaMedico(Long id) {
+        listaMedicos = medicoJson.listar();
+        for(int i=0; i<listaMedicos.size();i++){
+            if(listaMedicos.get(i).getId().equals(id)){
+                listaMedicos.remove(i);
+            }
+        }
+        medicoJson.manipularJson(listaMedicos);
+        return medicoJson.listar();
+    }
+
+    public Medico atualizaMedico(Medico medico){
+        listaMedicos = medicoJson.listar();
+        for (int i = 0; i < listaMedicos.size(); i++) {
+            if (listaMedicos.get(i).getId().equals(medico.getId())) {
+                listaMedicos.set(i, medico);
+            }
+        }
+        medicoJson.manipularJson(listaMedicos);
+        return medico;
+    }
+}

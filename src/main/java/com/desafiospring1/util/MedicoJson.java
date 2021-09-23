@@ -1,9 +1,21 @@
 package com.desafiospring1.util;
 
-public class MedicoJson implements<Medico>{
+import com.desafiospring1.entity.Medico;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class MedicoJson implements UtilFile<Medico>{
 
     @Override
-    public String cadastrar(List<Medico> medicos) {
+    public String manipular(List<Medico> medicos) {
 
         JSONObject jsonObject = new JSONObject();
 
@@ -37,8 +49,7 @@ public class MedicoJson implements<Medico>{
 
                 JSONObject medico = (JSONObject) med;
 
-                m.setId((String) medico.get("id"));
-                m.setCrmv((String) medico.get("crmv"));
+                m.setId((Long) medico.get("id"));
                 m.setCpf((String) medico.get("cpf"));
                 m.setNome((String) medico.get("nome"));
                 m.setSobrenome((String) medico.get("sobrenome"));
