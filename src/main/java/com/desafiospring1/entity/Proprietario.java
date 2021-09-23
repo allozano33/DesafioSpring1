@@ -1,11 +1,11 @@
 package com.desafiospring1.entity;
 
-import lombok.Setter;
+import lombok.Data;
 
 import java.text.ParseException;
 import java.time.LocalDate;
 
-@Setter
+@Data
 public class Proprietario extends Pessoa{
 
     private Long id;
@@ -28,7 +28,8 @@ public class Proprietario extends Pessoa{
     @Override
     public String toString() {
         return "{" +
-                "\"cpf\":\"" + super.getCpf() + "\"" +
+                "\"id\":" + getId() +
+                ", \"cpf\":\"" + super.getCpf() + "\"" +
                 ", \"nome\":\"" + super.getNome() + "\"" +
                 ", \"sobrenome\":\"" + super.getSobrenome() + "\"" +
                 ", \"dataDeNascimento\":\"" + dataDeNascimento + "\"" +

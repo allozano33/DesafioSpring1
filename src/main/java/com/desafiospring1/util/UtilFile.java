@@ -4,10 +4,8 @@ import java.util.List;
 
 public interface UtilFile<T>{
 
-    String cadastrar(List<T> obj);
+    String manipularJson(List<T> obj);
 
     List<T> listar();
-
-    String atualizar(List<T> obj);
 
 }

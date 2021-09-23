@@ -12,42 +12,47 @@ public class AnimalPersistence {
     private static List<Animal> listaAnimais = new ArrayList<>();
 
     public Animal cadastra(Animal animal) {
-        animal.setId(listaAnimais.size() + 1L);
+        animal.setId(animalJson.listar().size() + 1L);
+        for (Animal animais: animalJson.listar()) {
+            listaAnimais.add(animais);
+        }
         listaAnimais.add(animal);
-        animalJson.cadastrar(listaAnimais);
+        animalJson.manipularJson(listaAnimais);
         return animal;
     }
 
     public List<Animal> listagem() {
-
-        return listaAnimais;
+        return animalJson.listar();
     }
 
+    public Animal buscaAnimalPorId(Long id) {
+        for (Animal animal : animalJson.listar()) {
+            if (animal.getId().equals(id)) {
+                return animal;
+            }
+        }
+        return null;
+    }
 
-//
-//    public Animal obtemAnuncio(Long id) {
-//        for (Animal obj : lista) {
-//            if (obj.getId().equals(id)) {
-//                return obj;
-//            }
-//        }
-//        return null;
-//    }
-//
-//    public void remove(Long id) {
-//        for (Animal obj : lista) {
-//            if (obj.getId().equals(id)) {
-//                lista.remove(obj);
-//            }
-//        }
-//    }
-//
-//    public Animal atualizar(Animal obj) {
-//        for (int i = 0; i < obj.size(); i++) {
-//            if (obj.get(i).getId().equals(obj.getId())) {
-//                obj.set(i, obj);
-//            }
-//        }
-//        return obj;
-//    }
+    public List<Animal> deletaAnimal(Long id) {
+        listaAnimais = animalJson.listar();
+        for(int i=0; i<listaAnimais.size();i++){
+            if(listaAnimais.get(i).getId().equals(id)){
+                listaAnimais.remove(i);
+            }
+        }
+        animalJson.manipularJson(listaAnimais);
+        return animalJson.listar();
+    }
+
+    public Animal atualizaAnimal(Animal animal){
+        listaAnimais = animalJson.listar();
+        for (int i = 0; i < listaAnimais.size(); i++) {
+            if (listaAnimais.get(i).getId().equals(animal.getId())) {
+                listaAnimais.set(i, animal);
+            }
+        }
+        animalJson.manipularJson(listaAnimais);
+        return animal;
+    }
 }

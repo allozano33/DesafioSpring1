@@ -21,28 +21,36 @@ public class AnimalController {
     @PostMapping(value = "/cadastrar")
     public ResponseEntity<AnimalDto> cadastraAnimal(@RequestBody AnimalDto animalDto, UriComponentsBuilder uriBuilder) {
         Animal animal = animalDto.converte();
-        Animal animalCadastrado = animalService.cadastra(animal);
+        Animal animalCadastrado = animalService.cadastrar(animal);
 
         URI uri = uriBuilder.path("/animal/buscar/{id}").buildAndExpand(animalCadastrado.getId()).toUri();
         return ResponseEntity.created(uri).body(AnimalDto.converte(animalCadastrado));
     }
 
-//    @GetMapping("/listar")
-//    public List<Animal> listaAnimal(){
-//        return Animal.listar();
-//    }
-//
-//    @GetMapping("/buscar/{id}")
-//    public animal getAnimal {
-//        Animal animal = animal.getAnimal(id);
-//        return animal;
-//    }
+    @GetMapping("/listar")
+    public List<Animal> listaAnimal(){
+        return animalService.listar();
+    }
 
-//    @DeleteMapping(value ="/deletar/{id}")
-//    public String remover(@PathVariable("id") Integer id) {
-//        proprietario.remove(id);
-//        return "deletado";
-//    }
+    @GetMapping("/buscar/{id}")
+    public Animal buscaAnimalPorId(@PathVariable("id") Long id){
+        Animal animal = animalService.buscaAnimalPorId(id);
+        return animal;
+    }
+
+    //----------------------------Atenção--------------------------------
+    //Falta verificação se existe consulta para o animal antes de deletar
+    //O mesmo deve ser feito para Medico e proprietario
+    //-------------------------------------------------------------------
+    @DeleteMapping(value ="/deletar/{id}")
+    public List<Animal> deletaAnimal(@PathVariable("id") Long id) {
+        return animalService.deletaAnimal(id);
+    }
+
+    @PutMapping(value ="/atualizar")
+    public Animal atualizarAnimal(@RequestBody Animal animal) {
+        return animalService.atualizaAnimal(animal);
+    }
 }
 
 

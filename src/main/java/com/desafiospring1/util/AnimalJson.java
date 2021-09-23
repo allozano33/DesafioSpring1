@@ -5,7 +5,6 @@ import com.desafiospring1.entity.Proprietario;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -17,7 +16,7 @@ import java.util.List;
 public class AnimalJson implements UtilFile<Animal>{
 
     @Override
-    public String cadastrar(List<Animal> animal) {
+    public String manipularJson(List<Animal> animal) {
         JSONObject jsonObject = new JSONObject();
 
         FileWriter writeFile = null;
@@ -63,14 +62,16 @@ public class AnimalJson implements UtilFile<Animal>{
                 JSONObject obj = (JSONObject) animal.get("proprietario");
 
                 Proprietario p = new Proprietario();
+                p.setId((Long) obj.get("id"));
                 p.setCpf((String) obj.get("cpf"));
                 p.setNome((String) obj.get("nome"));
-                p.setEndereco((String) obj.get("endereco"));
-                p.setTelefoneContato((String) obj.get("telefoneContato"));
                 p.setSobrenome((String) obj.get("sobrenome"));
 
                 LocalDate dataDeNascimentoPro = LocalDate.parse((String) obj.get("dataDeNascimento"));
                 p.setDataDeNascimento((dataDeNascimentoPro));
+
+                p.setEndereco((String) obj.get("endereco"));
+                p.setTelefoneContato((String) obj.get("telefoneContato"));
 
                 ani_obj.setProprietario((Proprietario) p);
 
@@ -85,24 +86,4 @@ public class AnimalJson implements UtilFile<Animal>{
         }
         return animais;
     }
-
-    @Override
-    public String atualizar(List<Animal> animal) {
-        JSONObject jsonObject = new JSONObject();
-
-        FileWriter writeFile = null;
-
-        jsonObject.put("Animal", animal);
-
-        try {
-            writeFile = new FileWriter("animal.json");
-            writeFile.append(jsonObject.toJSONString());
-            writeFile.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return jsonObject.toJSONString();
-    }
-
 }
