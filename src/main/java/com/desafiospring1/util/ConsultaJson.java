@@ -1,5 +1,14 @@
 package com.desafiospring1.util;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+
 public class ConsultaJson implements UtilFile<Consulta>{
 
     @Override

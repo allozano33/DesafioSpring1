@@ -1,46 +1,58 @@
 package com.desafiospring1.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.desafiospring1.entity.Animal;
+import com.desafiospring1.entity.Proprietario;
+import com.desafiospring1.service.ProprietarioService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
-@RestController
-@RequestMapping(value = "/proprietario")
-public class ProprietarioController {
+import java.net.URI;
+import java.util.List;
 
-    //@PostMapping(value = "/cadastrar")
-    //@GetMapping(value = "/obter")
-    //@GetMapping(value = "/listar")
-    //@GetMapping(value = "/buscar")
-    //@GetMapping(value = "/deletar")
-//
-//    @Autowired
-//    private Proprietario proprietario;
-//    }
-//
-//    @GetMapping("/busca_id/{id}")
-//    public Proprietario getAlunobyId(@PathVariable("id") Integer id) {
-//        Proprietario proprietario = proprietarioService.getProprietario(id);
-//        return proprietario;
-//    }
-//
-//    @GetMapping("/listar")
-//    public List<Proprietario> listaProprietario(){
-//        return Proprietario.listar();
-//    }
-//
-//    @GetMapping("/{nome}")
-//    public Proprietario obtemProprietario(@PathVariable String nome){
-//        return proprietario.buscarProprietario(nome);
-//    }
-//
-//    @DeleteMapping(value ="/deleta/{id}")
-//    public String remover(@PathVariable("id") Integer id) {
-//        proprietario.remove(id);
-//        return "deletado";
-//    }
-//
-//    @PutMapping(value = "/atualiza")
-//    public Aluno atualizar(@RequestBody Proprietario proprietario) {
-//        return Proprietario.atualizar(proprietario);
+
+
+    @RestController
+    @RequestMapping(value = "/proprietario")
+
+    public class ProprietarioController {
+
+        @Autowired
+        private ProprietarioService proprietarioService;
+
+        @PostMapping(value = "/cadastrar")
+        public ResponseEntity<ProprietarioDto> cadastraProprietario (@RequestBody ProprietarioDto proprietarioDto, UriComponentsBuilder uriBuilder) {
+            Proprietario proprietario = proprietarioDto.converte();
+            Proprietario proprietarioCadastrado = proprietarioService.cadastrar(proprietario);
+
+            URI uri = uriBuilder.path("/animal/buscar/{id}").buildAndExpand(proprietarioCadastrado.getId()).toUri();
+            return ResponseEntity.created(uri).body(ProprietarioDto.converte(proprietarioCadastrado));
+        }
+
+        @GetMapping("/listar")
+        public List<Animal> listaAnimal ( ) {
+            return proprietarioService.listar();
+        }
+
+        @GetMapping("/buscar/{id}")
+        public Animal buscaAnimalPorId (@PathVariable("id") Long id) {
+            Animal propriedade = proprietarioService.buscaPropriedadePorId(id);
+            return propriedade;
+        }
+
+        //----------------------------Atenção--------------------------------
+        //Falta verificação se existe consulta para o animal antes de deletar
+        //O mesmo deve ser feito para Medico e proprietario
+        //-------------------------------------------------------------------
+        @DeleteMapping(value = "/deletar/{id}")
+        public List<Animal> deletaAnimal (@PathVariable("id") Long id) {
+            return proprietarioService.deletaProprietario(id);
+        }
+
+        @PutMapping(value = "/atualizar")
+        public Animal atualizarAnimal (@RequestBody Proprietario proprietario) {
+            return proprietarioService.atualizaProprietario(proprietario);
+        }
+    }
 }

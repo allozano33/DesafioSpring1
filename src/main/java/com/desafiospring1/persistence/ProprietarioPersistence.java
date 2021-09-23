@@ -1,50 +1,60 @@
-//package com.desafiospring1.persistence;
-//
-//import com.desafiospring1.entity.Proprietario;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-////classe especializada em realizar persistencia
-//
-//public class ProprietarioPersistence {
-//
-//    private static List<Proprietario> lista = new ArrayList<>();
-//
-//
-//    public Proprietario cadastro(Proprietario obj) {
-//        obj.setId(obj.size() + 1L);
-//        obj.add(obj);
-//        return obj;
-//    }
-//
-//    public List<Proprietario> listagem() {
-//        return lista;
-//    }
-//
-//    public Proprietario obtemAnuncio(Long id) {
-//        for (Proprietario obj : lista) {
-//            if (obj.getId().equals(id)) {
-//                return obj;
-//            }
-//        }
-//        return null;
-//    }
-//
-//    public void remove(Long id) {
-//        for (Proprietario obj : lista) {
-//            if (obj.getId().equals(id)) {
-//                lista.remove(obj);
-//            }
-//        }
-//    }
-//
-//    public T atualizar(Proprietario obj) {
-//        for (int i = 0; i < obj.size(); i++) {
-//            if (obj.get(i).getId().equals(obj.getId())) {
-//                obj.set(i, obj);
-//            }
-//        }
-//        return obj;
-//    }
-//}
+package com.desafiospring1.persistence;
+
+import com.desafiospring1.entity.Animal;
+import com.desafiospring1.entity.Proprietario;
+import com.desafiospring1.util.ProprietarioJson;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class ProprietarioPersistence {
+
+    private ProprietarioJson proprietarioJson = new ProprietarioJson();
+    private static List<Proprietario> listaProprietario = new ArrayList<>();
+
+    public Proprietario cadastra(Animal animal) {
+        animal.setId(proprietarioJson.listar().size() + 1L);
+        for (Proprietario proprietario: proprietarioJson.listar()) {
+            listaProprietario.add(proprietario);
+        }
+        listaProprietario.add(proprietario);
+        proprietarioJson.manipularJson(listaProprietario);
+        return proprietario;
+    }
+
+    public List<Animal> listagem() {
+        return (List<Animal>) proprietarioJson.listar();
+    }
+
+    public Animal buscaAnimalPorId(Long id) {
+        for (Animal animal : proprietarioJson.listar()) {
+            if (animal.getId().equals(id)) {
+                return animal;
+            }
+        }
+        return null;
+    }
+
+    public List<Animal> deletaAnimal(Long id) {
+        listaProprietario = (List<Proprietario>) proprietarioJson.listar();
+        for(int i=0; i<listaProprietario.size();i++){
+            if(listaProprietario.get(i).getId().equals(id)){
+                listaProprietario.remove(i);
+            }
+        }
+       proprietarioJson.manipularJson(listaProprietario);
+        return (List<Animal>) proprietarioJson.listar();
+    }
+
+    public Proprietario atualizaProprietario(Proprietario proprietario){
+        listaProprietario = (List<Proprietario>) proprietarioJson.listar();
+        for (int i = 0; i < listaProprietario.size(); i++) {
+            if (listaProprietario.get(i).getId().equals(proprietario.getId())) {
+                listaProprietario.set(i, proprietario);
+            }
+        }
+        proprietarioJson.manipularJson(listaProprietario);
+        return proprietario;
+    }
+}

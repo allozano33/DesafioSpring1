@@ -1,5 +1,18 @@
 package com.desafiospring1.util;
 
+import com.desafiospring1.entity.Proprietario;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import java.awt.*;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 public class ProprietarioJson implements UtilFile<Proprietario>{
 
     @Override
@@ -20,6 +33,11 @@ public class ProprietarioJson implements UtilFile<Proprietario>{
         }
 
         return jsonObject.toJSONString();
+    }
+
+    @Override
+    public String manipularJson (java.util.List<Proprietario> obj) {
+        return null;
     }
 
     @Override
