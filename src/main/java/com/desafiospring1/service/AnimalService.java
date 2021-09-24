@@ -1,8 +1,10 @@
 package com.desafiospring1.service;
 
 import com.desafiospring1.dto.AnimalDto;
+import com.desafiospring1.dto.ConsultaDto;
 import com.desafiospring1.entity.Animal;
 import com.desafiospring1.persistence.AnimalPersistence;
+import com.desafiospring1.persistence.ConsultaPersistence;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,8 +44,22 @@ public class AnimalService {
         return persistence.buscaAnimalPorId(id);
     }
 
+    private boolean animalEmConsulta(Long id) {
+        ConsultaPersistence consultaPersistence = new ConsultaPersistence();
+        for (ConsultaDto consultaDto : consultaPersistence.listagemCompleta()) {
+            if (consultaDto.getAnimalDto().getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<Animal> deletaAnimal(Long id) {
-        return persistence.deletaAnimal(id);
+        if(!animalEmConsulta(id)) {
+            return persistence.deletaAnimal(id);
+        } else {
+            throw new RuntimeException("Animal em consulta, ele não pode ser deletado!");
+        }
     }
 
     public Animal atualizaAnimal(Animal animalDto){

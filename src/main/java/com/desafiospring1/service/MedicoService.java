@@ -1,6 +1,8 @@
 package com.desafiospring1.service;
 
+import com.desafiospring1.dto.ConsultaDto;
 import com.desafiospring1.entity.Medico;
+import com.desafiospring1.persistence.ConsultaPersistence;
 import com.desafiospring1.persistence.MedicoPersistence;
 import org.springframework.stereotype.Service;
 
@@ -37,8 +39,22 @@ public class MedicoService {
         return persistence.buscaMedicoPorId(id);
     }
 
+    private boolean medicoEmConsulta(Long id) {
+        ConsultaPersistence consultaPersistence = new ConsultaPersistence();
+        for (ConsultaDto consultaDto : consultaPersistence.listagemCompleta()) {
+            if (consultaDto.getMedico().getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<Medico> deletaMedico(Long id) {
-        return persistence.deletaMedico(id);
+        if(!medicoEmConsulta(id)) {
+            return persistence.deletaMedico(id);
+        } else {
+            throw new RuntimeException("Médico em consulta, ele não pode ser deletado!");
+        }
     }
 
     public Medico atualizaMedico(Medico medico){

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -64,14 +63,10 @@ public class ConsultaController {
         return consulta;
     }
 
-    //----------------------------Atenção--------------------------------
-    //Falta verificação se existe consulta para o animal antes de deletar
-    //O mesmo deve ser feito para Medico e proprietario
-    //-------------------------------------------------------------------
-    @DeleteMapping(value = "/deletar/{id}")
-    public List<Consulta> deletaConsulta(@PathVariable("id") Long id) {
-        return consultaService.deletaConsulta(id);
-    }
+//    @DeleteMapping(value = "/deletar/{id}")
+//    public List<Consulta> deletaConsulta(@PathVariable("id") Long id) {
+//        return consultaService.deletaConsulta(id);
+//    }
 
     @PutMapping(value = "/atualizar")
     public Consulta atualizarAnimal(@RequestBody Consulta consulta) {

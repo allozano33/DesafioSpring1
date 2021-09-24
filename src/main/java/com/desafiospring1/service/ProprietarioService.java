@@ -1,6 +1,8 @@
 package com.desafiospring1.service;
 
+import com.desafiospring1.dto.ConsultaDto;
 import com.desafiospring1.entity.Proprietario;
+import com.desafiospring1.persistence.ConsultaPersistence;
 import com.desafiospring1.persistence.ProprietarioPersistence;
 import org.springframework.stereotype.Service;
 
@@ -36,8 +38,23 @@ public class ProprietarioService {
         return persistence.buscaProprietarioPorId(id);
     }
 
+    private boolean proprietarioEmConsulta(Long id) {
+        ConsultaPersistence consultaPersistence = new ConsultaPersistence();
+        for (ConsultaDto consultaDto : consultaPersistence.listagemCompleta()) {
+            if (consultaDto.getAnimalDto().getProprietario().getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<Proprietario> deletaProprietario(Long id) {
-        return persistence.deletaProprietario(id);
+        if(!proprietarioEmConsulta(id)) {
+            return persistence.deletaProprietario(id);
+        } else {
+            throw new RuntimeException("Proprietario em consulta, ele não pode ser deletado!");
+        }
+
     }
 
     public Proprietario atualizaProprietario(Proprietario proprietario){
