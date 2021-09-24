@@ -13,22 +13,22 @@ public class Consulta {
     private String motivo;
     private String diagnostico;
     private String tratamento;
-    private Medico medico;
-    private Animal animal;
+    private Long idMedico;
+    private Long idAnimal;
 
     public Consulta() {
 
     }
 
-    public Consulta(Long id, String codigo, LocalDateTime dataHora, String motivo, String diagnostico, String tratamento, Medico medico, Animal animal) {
+    public Consulta(Long id, String codigo, LocalDateTime dataHora, String motivo, String diagnostico, String tratamento, Long idMedico, Long idAnimal) {
         this.id = id;
         this.codigo = codigo;
         this.dataHora = dataHora;
         this.motivo = motivo;
         this.diagnostico = diagnostico;
         this.tratamento = tratamento;
-        this.medico = medico;
-        this.animal = animal;
+        this.idMedico = idMedico;
+        this.idAnimal = idAnimal;
     }
 
     @Override
@@ -40,8 +40,8 @@ public class Consulta {
                 ", motivo='" + motivo + '\'' +
                 ", diagnostico='" + diagnostico + '\'' +
                 ", tratamento='" + tratamento + '\'' +
-                ", medico=" + medico +
-                ", animal=" + animal +
+                ", medico=" + idMedico +
+                ", animal=" + idAnimal +
                 '}';
     }
 }
