@@ -1,11 +1,13 @@
-package com.desafiospring1.entity;
+package com.desafiospring1.dto;
 
+import com.desafiospring1.entity.Animal;
+import com.desafiospring1.entity.Medico;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
-public class Consulta {
+public class ConsultaDto {
 
     private Long id;
     private String codigo;
@@ -13,22 +15,22 @@ public class Consulta {
     private String motivo;
     private String diagnostico;
     private String tratamento;
-    private Long idMedico;
-    private Long idAnimal;
+    private Medico medico;
+    private AnimalDto animalDto;
 
-    public Consulta() {
+    public ConsultaDto() {
 
     }
 
-    public Consulta(Long id, String codigo, LocalDateTime dataHora, String motivo, String diagnostico, String tratamento, Long idMedico, Long idAnimal) {
+    public ConsultaDto(Long id, String codigo, LocalDateTime dataHora, String motivo, String diagnostico, String tratamento, Medico medico, AnimalDto animalDto) {
         this.id = id;
         this.codigo = codigo;
         this.dataHora = dataHora;
         this.motivo = motivo;
         this.diagnostico = diagnostico;
         this.tratamento = tratamento;
-        this.idMedico = idMedico;
-        this.idAnimal = idAnimal;
+        this.medico = medico;
+        this.animalDto = animalDto;
     }
 
     @Override
@@ -40,8 +42,8 @@ public class Consulta {
                 ", \"motivo\":\"" + motivo + "\"" +
                 ", \"diagnostico\":\"" + diagnostico + "\"" +
                 ", \"tratamento\":\"" + tratamento + "\"" +
-                ", \"idMedico\":" + idMedico +
-                ", \"idAnimal\":" + idAnimal +
+                ", \"medico\":" + medico +
+                ", \"animal\":" + animalDto +
                 '}';
     }
 }

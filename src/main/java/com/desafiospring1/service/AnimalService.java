@@ -1,6 +1,7 @@
 package com.desafiospring1.service;
 
 import com.desafiospring1.dto.AnimalDto;
+import com.desafiospring1.entity.Animal;
 import com.desafiospring1.persistence.AnimalPersistence;
 import org.springframework.stereotype.Service;
 
@@ -12,36 +13,40 @@ public class AnimalService {
     private AnimalPersistence persistence = new AnimalPersistence();
 
     private boolean codigoNaoUtilizado(String numeroPaciente) {
-        for (AnimalDto animalDto : persistence.listagem()) {
-            if (animalDto.getNumeroPaciente().equals(numeroPaciente)) {
+        for (Animal animal : persistence.listagem()) {
+            if (animal.getNumeroPaciente().equals(numeroPaciente)) {
                 return false;
             }
         }
         return true;
     }
 
-    public AnimalDto cadastrar(AnimalDto animalDto) {
-        if (codigoNaoUtilizado(animalDto.getNumeroPaciente())) {
-            animalDto.setId(persistence.listagem().size()+1L);
-            return persistence.cadastra(animalDto);
+    public Animal cadastrar(Animal animal) {
+        if (codigoNaoUtilizado(animal.getNumeroPaciente())) {
+            animal.setId(persistence.listagem().size()+1L);
+            return persistence.cadastra(animal);
         } else {
             throw new RuntimeException("Código já utilizado");
         }
     }
 
-    public List<AnimalDto> listar() {
+    public List<Animal> listar() {
         return persistence.listagem();
     }
 
-    public AnimalDto buscaAnimalPorId(Long id) {
+    public List<AnimalDto> listarDadosCompletos() {
+        return persistence.listagemCompleta();
+    }
+
+    public Animal buscaAnimalPorId(Long id) {
         return persistence.buscaAnimalPorId(id);
     }
 
-    public List<AnimalDto> deletaAnimal(Long id) {
+    public List<Animal> deletaAnimal(Long id) {
         return persistence.deletaAnimal(id);
     }
 
-    public AnimalDto atualizaAnimal(AnimalDto animalDto){
+    public Animal atualizaAnimal(Animal animalDto){
         return persistence.atualizaAnimal(animalDto);
     }
 }

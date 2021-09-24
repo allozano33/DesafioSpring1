@@ -1,5 +1,6 @@
 package com.desafiospring1.persistence;
 
+import com.desafiospring1.entity.Medico;
 import com.desafiospring1.entity.Proprietario;
 import com.desafiospring1.util.ProprietarioJson;
 
@@ -13,11 +14,9 @@ public class ProprietarioPersistence {
 
     public Proprietario cadastra(Proprietario proprietario) {
         proprietario.setId(proprietarioJson.listar().size() + 1L);
-        for (Proprietario proprietarios: proprietarioJson.listar()) {
-            listaProprietario.add(proprietarios);
-        }
-        listaProprietario.add(proprietario);
-        proprietarioJson.manipularJson(listaProprietario);
+        List<Proprietario> novaListaProprietario = proprietarioJson.listar();
+        novaListaProprietario.add(proprietario);
+        proprietarioJson.manipularJson(novaListaProprietario);
         return proprietario;
     }
 

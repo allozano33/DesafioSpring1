@@ -1,6 +1,8 @@
 package com.desafiospring1.persistence;
 
+import com.desafiospring1.dto.ConsultaDto;
 import com.desafiospring1.entity.Consulta;
+import com.desafiospring1.entity.Medico;
 import com.desafiospring1.util.ConsultaJson;
 
 import java.util.ArrayList;
@@ -13,16 +15,18 @@ public class ConsultaPersistence {
 
     public Consulta cadastra(Consulta consulta) {
         consulta.setId(consultaJson.listar().size() + 1L);
-        for (Consulta consultas : consultaJson.listar()) {
-            listaConsultas.add(consultas);
-        }
-        listaConsultas.add(consulta);
-        consultaJson.manipularJson(listaConsultas);
+        List<Consulta> novaListaConsultas = consultaJson.listar();
+        novaListaConsultas.add(consulta);
+        consultaJson.manipularJson(novaListaConsultas);
         return consulta;
     }
 
     public List<Consulta> listagem() {
         return consultaJson.listar();
+    }
+
+    public List<ConsultaDto> listagemCompleta() {
+        return consultaJson.listarDadosCompletos();
     }
 
     public Consulta buscaConsultaPorId(Long id) {

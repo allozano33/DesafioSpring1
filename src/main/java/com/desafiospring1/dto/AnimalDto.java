@@ -1,5 +1,6 @@
 package com.desafiospring1.dto;
 
+import com.desafiospring1.entity.Proprietario;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -14,13 +15,13 @@ public class AnimalDto {
     private String cor;
     private LocalDate dataDeNascimento;
     private String nome;
-    private Long idProprietario;
+    private Proprietario proprietario;
 
     public AnimalDto(){
 
     }
 
-    public AnimalDto(Long id, String numeroPaciente, String especie, String raca, String cor, LocalDate dataDeNascimento, String nome, Long idProprietario) {
+    public AnimalDto(Long id, String numeroPaciente, String especie, String raca, String cor, LocalDate dataDeNascimento, String nome, Proprietario proprietario) {
         this.id = id;
         this.numeroPaciente = numeroPaciente;
         this.especie = especie;
@@ -28,7 +29,7 @@ public class AnimalDto {
         this.cor = cor;
         this.dataDeNascimento = dataDeNascimento;
         this.nome = nome;
-        this.idProprietario = idProprietario;
+        this.proprietario = proprietario;
     }
 
     @Override
@@ -41,7 +42,7 @@ public class AnimalDto {
                 ", \"cor\":\"" + cor + "\"" +
                 ", \"dataDeNascimento\":\"" + dataDeNascimento + "\"" +
                 ", \"nome\":\"" + nome + "\"" +
-                ", \"idProprietario\":" + idProprietario +
+                ", \"proprietario\":" + proprietario +
                 "}";
     }
 }

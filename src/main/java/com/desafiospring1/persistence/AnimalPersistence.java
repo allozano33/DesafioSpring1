@@ -1,6 +1,7 @@
 package com.desafiospring1.persistence;
 
 import com.desafiospring1.dto.AnimalDto;
+import com.desafiospring1.entity.Animal;
 import com.desafiospring1.util.AnimalJson;
 
 import java.util.ArrayList;
@@ -9,30 +10,34 @@ import java.util.List;
 public class AnimalPersistence {
 
     private AnimalJson animalJson = new AnimalJson();
-    private static List<AnimalDto> listaAnimais = new ArrayList<>();
+    private static List<Animal> listaAnimais = new ArrayList<>();
 
-    public AnimalDto cadastra(AnimalDto animalDto) {
-        animalDto.setId(animalJson.listar().size() + 1L);
-        List<AnimalDto> novaListaAnimais = animalJson.listar();
-        novaListaAnimais.add(animalDto);
+    public Animal cadastra(Animal animal) {
+        animal.setId(animalJson.listar().size() + 1L);
+        List<Animal> novaListaAnimais = animalJson.listar();
+        novaListaAnimais.add(animal);
         animalJson.manipularJson(novaListaAnimais);
-        return animalDto;
+        return animal;
     }
 
-    public List<AnimalDto> listagem() {
+    public List<Animal> listagem() {
         return animalJson.listar();
     }
 
-    public AnimalDto buscaAnimalPorId(Long id) {
-        for (AnimalDto animalDto : animalJson.listar()) {
-            if (animalDto.getId().equals(id)) {
-                return animalDto;
+    public List<AnimalDto> listagemCompleta() {
+        return animalJson.listarDadosCompletos();
+    }
+
+    public Animal buscaAnimalPorId(Long id) {
+        for (Animal animal : animalJson.listar()) {
+            if (animal.getId().equals(id)) {
+                return animal;
             }
         }
         return null;
     }
 
-    public List<AnimalDto> deletaAnimal(Long id) {
+    public List<Animal> deletaAnimal(Long id) {
         listaAnimais = animalJson.listar();
         for(int i=0; i<listaAnimais.size();i++){
             if(listaAnimais.get(i).getId().equals(id)){
@@ -43,14 +48,14 @@ public class AnimalPersistence {
         return animalJson.listar();
     }
 
-    public AnimalDto atualizaAnimal(AnimalDto animalDto){
+    public Animal atualizaAnimal(Animal animal){
         listaAnimais = animalJson.listar();
         for (int i = 0; i < listaAnimais.size(); i++) {
-            if (listaAnimais.get(i).getId().equals(animalDto.getId())) {
-                listaAnimais.set(i, animalDto);
+            if (listaAnimais.get(i).getId().equals(animal.getId())) {
+                listaAnimais.set(i, animal);
             }
         }
         animalJson.manipularJson(listaAnimais);
-        return animalDto;
+        return animal;
     }
 }

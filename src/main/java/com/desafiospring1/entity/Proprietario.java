@@ -17,7 +17,7 @@ public class Proprietario extends Pessoa{
 
     }
 
-    public Proprietario(String cpf, String nome, String sobrenome, Long id, LocalDate dataDeNascimento, String endereco, String telefoneContato) throws ParseException {
+    public Proprietario(Long id, String cpf, String nome, String sobrenome, LocalDate dataDeNascimento, String endereco, String telefoneContato) throws ParseException {
         super(cpf, nome, sobrenome);
         this.id = id;
         this.dataDeNascimento = dataDeNascimento;

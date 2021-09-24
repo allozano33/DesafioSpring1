@@ -15,7 +15,7 @@ public class Medico extends Pessoa{
 
     }
 
-    public Medico(String cpf, String nome, String sobrenome, Long id, String numeroDeRegistro, String especialidade) throws ParseException {
+    public Medico(Long id, String cpf, String nome, String sobrenome, String numeroDeRegistro, String especialidade) throws ParseException {
         super(cpf, nome, sobrenome);
         this.id = id;
         this.numeroDeRegistro = numeroDeRegistro;

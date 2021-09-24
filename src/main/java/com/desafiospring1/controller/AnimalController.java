@@ -1,6 +1,7 @@
 package com.desafiospring1.controller;
 
 import com.desafiospring1.dto.AnimalDto;
+import com.desafiospring1.entity.Animal;
 import com.desafiospring1.service.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,22 +19,27 @@ public class AnimalController {
     private AnimalService animalService;
 
     @PostMapping(value = "/cadastrar")
-    public ResponseEntity<AnimalDto> cadastraAnimal(@RequestBody AnimalDto animalDto, UriComponentsBuilder uriBuilder) {
-        AnimalDto animalCadastrado = animalService.cadastrar(animalDto);
+    public ResponseEntity<Animal> cadastraAnimal(@RequestBody Animal animal, UriComponentsBuilder uriBuilder) {
+        Animal animalCadastrado = animalService.cadastrar(animal);
 
         URI uri = uriBuilder.path("/animal/buscar/{id}").buildAndExpand(animalCadastrado.getId()).toUri();
         return ResponseEntity.created(uri).body(animalCadastrado);
     }
 
     @GetMapping("/listar")
-    public List<AnimalDto> listaAnimal(){
+    public List<Animal> listaAnimal(){
         return animalService.listar();
     }
 
+    @GetMapping("/listarDadosCompletos")
+    public List<AnimalDto> listaAnimalDadosCompletos(){
+        return animalService.listarDadosCompletos();
+    }
+
     @GetMapping("/buscar/{id}")
-    public AnimalDto buscaAnimalPorId(@PathVariable("id") Long id){
-        AnimalDto animalDto = animalService.buscaAnimalPorId(id);
-        return animalDto;
+    public Animal buscaAnimalPorId(@PathVariable("id") Long id){
+        Animal animal = animalService.buscaAnimalPorId(id);
+        return animal;
     }
 
     //----------------------------Atenção--------------------------------
@@ -41,13 +47,13 @@ public class AnimalController {
     //O mesmo deve ser feito para Medico e proprietario
     //-------------------------------------------------------------------
     @DeleteMapping(value ="/deletar/{id}")
-    public List<AnimalDto> deletaAnimal(@PathVariable("id") Long id) {
+    public List<Animal> deletaAnimal(@PathVariable("id") Long id) {
         return animalService.deletaAnimal(id);
     }
 
     @PutMapping(value ="/atualizar")
-    public AnimalDto atualizarAnimal(@RequestBody AnimalDto animalDto) {
-        return animalService.atualizaAnimal(animalDto);
+    public Animal atualizarAnimal(@RequestBody Animal animal) {
+        return animalService.atualizaAnimal(animal);
     }
 }
 

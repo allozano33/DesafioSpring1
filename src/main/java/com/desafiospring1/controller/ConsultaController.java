@@ -1,5 +1,6 @@
 package com.desafiospring1.controller;
 
+import com.desafiospring1.dto.ConsultaDto;
 import com.desafiospring1.entity.Consulta;
 import com.desafiospring1.service.ConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,11 @@ public class ConsultaController {
     @GetMapping("/listar")
     public List<Consulta> listaConsulta() {
         return consultaService.listar();
+    }
+
+    @GetMapping("/listarDadosCompletos")
+    public List<ConsultaDto> listaConsultaDadosCompletos() {
+        return consultaService.listarDadosCompletos();
     }
 
     @GetMapping("/buscar/{id}")

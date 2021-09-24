@@ -1,5 +1,6 @@
 package com.desafiospring1.service;
 
+import com.desafiospring1.dto.ConsultaDto;
 import com.desafiospring1.entity.Consulta;
 import com.desafiospring1.persistence.ConsultaPersistence;
 import org.springframework.stereotype.Service;
@@ -33,15 +34,22 @@ public class ConsultaService {
         return persistence.listagem();
     }
 
+    public List<ConsultaDto> listarDadosCompletos() {
+        return persistence.listagemCompleta();
+    }
+
     public Consulta buscaConsultaPorId(Long id) {
+
         return persistence.buscaConsultaPorId(id);
     }
 
     public List<Consulta> deletaConsulta(Long id) {
+
         return persistence.deletaConsulta(id);
     }
 
     public Consulta atualizaConsulta(Consulta consulta) {
+
         return persistence.atualizaConsulta(consulta);
     }
 }

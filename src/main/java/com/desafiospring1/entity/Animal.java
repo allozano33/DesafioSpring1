@@ -14,13 +14,13 @@ public class Animal {
     private String cor;
     private LocalDate dataDeNascimento;
     private String nome;
-    private Proprietario proprietario;
+    private Long idProprietario;
 
     public Animal(){
 
     }
 
-    public Animal(Long id, String numeroPaciente, String especie, String raca, String cor, LocalDate dataDeNascimento, String nome, Proprietario proprietario) {
+    public Animal(Long id, String numeroPaciente, String especie, String raca, String cor, LocalDate dataDeNascimento, String nome, Long idProprietario) {
         this.id = id;
         this.numeroPaciente = numeroPaciente;
         this.especie = especie;
@@ -28,7 +28,7 @@ public class Animal {
         this.cor = cor;
         this.dataDeNascimento = dataDeNascimento;
         this.nome = nome;
-        this.proprietario = proprietario;
+        this.idProprietario = idProprietario;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Animal {
                 ", \"cor\":\"" + cor + "\"" +
                 ", \"dataDeNascimento\":\"" + dataDeNascimento + "\"" +
                 ", \"nome\":\"" + nome + "\"" +
-                ", \"proprietario\":" + proprietario +
+                ", \"idProprietario\":" + idProprietario +
                 "}";
     }
 }
