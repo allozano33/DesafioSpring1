@@ -1,0 +1,625 @@
+{
+	"info": {
+		"_postman_id": "438c6835-80ab-435d-a1c1-286be679fcb4",
+		"name": "DESAFIO SPRING 1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Animal",
+			"item": [
+				{
+					"name": "Animal Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/animal/listar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"animal",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Animal Listar Dados completos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/animal/listarDadosCompletos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"animal",
+								"listarDadosCompletos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Animal Cadastrar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n      \"numeroPaciente\": \"NP987\",\n      \"especie\": \"Cachorro\",\n      \"raca\": \"Shitsu\",\n      \"cor\": \"Branco e preto\",\n      \"dataDeNascimento\": \"2020-07-10\",\n      \"nome\": \"Mera\",\n      \"idProprietario\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/animal/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"animal",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Animal Buscar por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/animal/buscar/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"animal",
+								"buscar",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Animal Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/animal/deletar/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"animal",
+								"deletar",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Animal Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 3,\n    \"numeroPaciente\": \"NP987\",\n    \"especie\": \"Cão\",\n    \"raca\": \"Shitsu\",\n    \"cor\": \"Branco e preto\",\n    \"dataDeNascimento\": \"2020-07-10\",\n    \"nome\": \"Mera\",\n    \"idProprietario\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/animal/atualizar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"animal",
+								"atualizar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Medico",
+			"item": [
+				{
+					"name": "Medico Cadastrar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cpf\": \"207.470.820-98\",\n    \"nome\": \"Wagner\",\n    \"sobrenome\": \"Crestani\",\n    \"numeroDeRegistro\": \"CRMV-47851\",\n    \"especialidade\": \"clinico\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/medico/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"medico",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Medico Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/medico/listar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"medico",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Medico Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/medico/deletar/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"medico",
+								"deletar",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Medico Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cpf\": \"207.470.820-98\",\n    \"nome\": \"Wagner\",\n    \"sobrenome\": \"Fernandes\",\n    \"id\": 3,\n    \"numeroDeRegistro\": \"CRMV-47851\",\n    \"especialidade\": \"clinico\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/medico/atualizar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"medico",
+								"atualizar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Proprietario",
+			"item": [
+				{
+					"name": "Proprietario Cadastrar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cpf\": \"207.470.820-87\",\n    \"nome\": \"Carol\",\n    \"sobrenome\": \"Ferreira\",\n    \"dataDeNascimento\": \"1998-07-23\",\n    \"endereco\": \"Rua dos Bobos, 0\",\n    \"telefoneContato\": \"56634639\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/proprietario/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"proprietario",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Proprietario Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/proprietario/listar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"proprietario",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Proprietario Buscar por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/proprietario/buscar/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"proprietario",
+								"buscar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Proprietario Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/proprietario/deletar/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"proprietario",
+								"deletar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Proprietario Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"cpf\": \"207.470.820-30\",\n    \"nome\": \"Wagner\",\n    \"sobrenome\": \"Peppa\",\n    \"dataDeNascimento\": \"1998-07-23\",\n    \"endereco\": \"Rua dos Bobos, 0\",\n    \"telefoneContato\": \"56634639\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/proprietario/atualizar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"proprietario",
+								"atualizar"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Consulta",
+			"item": [
+				{
+					"name": "Consulta Cadastrar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo\": \"CONS-999\",\n    \"dataHora\": \"2021-09-15T12:23:37.206794\",\n    \"motivo\": \"castracao\",\n    \"diagnostico\": \"castracao\",\n    \"tratamento\": \"repouso e remedio\",\n    \"idMedico\": 2,\n    \"idAnimal\": 2\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/consulta/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"consulta",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/consulta/listar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"consulta",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta Lista Dados Completos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/consulta/listarDadosCompletos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"consulta",
+								"listarDadosCompletos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta Buscar por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/consulta/buscar/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"consulta",
+								"buscar",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/consulta/deletar/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"consulta",
+								"deletar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cunsulta Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 3,\n    \"codigo\": \"CONS-987\",\n    \"dataHora\": \"2021-09-14T12:23:37.206794\",\n    \"motivo\": \"castracao\",\n    \"diagnostico\": \"castracao\",\n    \"tratamento\": \"repouso e remedio\",\n    \"idMedico\": 3,\n    \"idAnimal\": 2\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/consulta/atualizar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"consulta",
+								"atualizar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta de um animal por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/consulta/listarAnimalPorData/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"consulta",
+								"listarAnimalPorData",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta Total por medico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/consulta/listarTotalDeConsultaPorMedico",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"consulta",
+								"listarTotalDeConsultaPorMedico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta Total por medico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/consulta/listarPorNomeProprietario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"consulta",
+								"listarPorNomeProprietario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta Por dia",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/consulta/listarConsultasDoDia/14-09-2021",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"consulta",
+								"listarConsultasDoDia",
+								"14-09-2021"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
