@@ -1,6 +1,7 @@
 package com.desafiospring1.controller;
 
 import com.desafiospring1.dto.ConsultaDto;
+import com.desafiospring1.dto.ConsultaTotalMedicoDto;
 import com.desafiospring1.entity.Consulta;
 import com.desafiospring1.service.ConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -34,6 +36,26 @@ public class ConsultaController {
     @GetMapping("/listarDadosCompletos")
     public List<ConsultaDto> listaConsultaDadosCompletos() {
         return consultaService.listarDadosCompletos();
+    }
+
+    @GetMapping("/listarAnimalPorData/{id}")
+    public List<ConsultaDto> listaAnimalPorData(@PathVariable("id") Long id) {
+        return consultaService.listarAnimalPorData(id);
+    }
+
+    @GetMapping("/listarPorNomeProprietario")
+    public List<ConsultaDto> listaPorNomeProprietario() {
+        return consultaService.listarPorNomeProprietario();
+    }
+
+    @GetMapping("/listarTotalDeConsultaPorMedico")
+    public List<ConsultaTotalMedicoDto> listaTotalDeConsultaPorMedico() {
+        return consultaService.listarTotalDeConsultaPorMedico();
+    }
+
+    @GetMapping("/listarConsultasDoDia/{data}")
+    public List<ConsultaDto> listaConsultasDoDia(@PathVariable("data") String data) {
+        return consultaService.listarConsultasDoDia(data);
     }
 
     @GetMapping("/buscar/{id}")

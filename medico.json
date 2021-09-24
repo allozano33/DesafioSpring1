@@ -1,1 +1,1 @@
-{"Medico":[{ "id":1, "cpf":"207.470.820-58", "nome":"Alessandro", "sobrenome":"Teste", "numeroDeRegistro":"CRMV-12143", "especialidade":"neuro"}]}
+{"Medico":[{ "id":1, "cpf":"207.470.820-58", "nome":"Alessandro", "sobrenome":"Teste", "numeroDeRegistro":"CRMV-12143", "especialidade":"neuro"},{ "id":2, "cpf":"207.470.820-58", "nome":"Cassio", "sobrenome":"Crestani", "numeroDeRegistro":"CRMV-12155", "especialidade":"clinico"},{ "id":3, "cpf":"207.470.820-98", "nome":"Wagner", "sobrenome":"Fernandes", "numeroDeRegistro":"CRMV-47851", "especialidade":"clinico"}]}
