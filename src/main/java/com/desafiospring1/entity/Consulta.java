@@ -16,6 +16,20 @@ public class Consulta {
     private Long idMedico;
     private Long idAnimal;
 
+    public Consulta() {
+
+    }
+
+    public Consulta(String codigo, LocalDateTime dataHora, String motivo, String diagnostico, String tratamento, Long idMedico, Long idAnimal) {
+        this.codigo = codigo;
+        this.dataHora = dataHora;
+        this.motivo = motivo;
+        this.diagnostico = diagnostico;
+        this.tratamento = tratamento;
+        this.idMedico = idMedico;
+        this.idAnimal = idAnimal;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -28,5 +42,10 @@ public class Consulta {
                 ", \"idMedico\":" + idMedico +
                 ", \"idAnimal\":" + idAnimal +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.codigo.equals(((Consulta) obj).getCodigo());
     }
 }
