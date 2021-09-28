@@ -1,10 +1,8 @@
 package com.desafiospring1.persistence;
 
-import com.desafiospring1.entity.Medico;
 import com.desafiospring1.entity.Proprietario;
 import com.desafiospring1.util.ProprietarioJson;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
