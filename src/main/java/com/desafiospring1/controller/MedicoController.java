@@ -37,10 +37,6 @@ public class MedicoController {
         return medico;
     }
 
-    //----------------------------Atenção--------------------------------
-    //Falta verificação se existe consulta para o animal antes de deletar
-    //O mesmo deve ser feito para Medico e proprietario
-    //-------------------------------------------------------------------
     @DeleteMapping(value ="/deletar/{id}")
     public List<Medico> deletaMedico(@PathVariable("id") Long id) {
         return medicoService.deletaMedico(id);
