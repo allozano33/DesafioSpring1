@@ -15,22 +15,18 @@ import java.util.List;
 public class MedicoJson implements UtilFile<Medico>{
 
     @Override
-    public String manipularJson(List<Medico> medicos) {
-
+    public String manipularJson(List<Medico> medicos) throws IOException {
         JSONObject jsonObject = new JSONObject();
-
-        FileWriter writeFile = null;
-
         jsonObject.put("Medico", medicos);
+        FileWriter writeFile = new FileWriter("medico.json");
 
         try {
-            writeFile = new FileWriter("medico.json");
             writeFile.write(jsonObject.toJSONString());
-            writeFile.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            writeFile.close();
         }
-
         return jsonObject.toJSONString();
     }
 

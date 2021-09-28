@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.io.IOException;
 import java.net.URI;
-import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -19,7 +19,7 @@ public class MedicoController {
     private MedicoService medicoService;
 
     @PostMapping(value = "/cadastrar")
-    public ResponseEntity<Medico> cadastraMedico(@RequestBody Medico medico, UriComponentsBuilder uriBuilder) throws ParseException {
+    public ResponseEntity<Medico> cadastraMedico(@RequestBody Medico medico, UriComponentsBuilder uriBuilder) throws IOException {
         Medico medicoCadastrado = medicoService.cadastrar(medico);
 
         URI uri = uriBuilder.path("/medico/buscar/{id}").buildAndExpand(medicoCadastrado.getId()).toUri();
@@ -33,17 +33,16 @@ public class MedicoController {
 
     @GetMapping("/buscar/{id}")
     public Medico buscaMedicoPorId(@PathVariable("id") Long id){
-        Medico medico = medicoService.buscaMedicoPorId(id);
-        return medico;
+        return medicoService.buscaMedicoPorId(id);
     }
 
     @DeleteMapping(value ="/deletar/{id}")
-    public List<Medico> deletaMedico(@PathVariable("id") Long id) {
+    public List<Medico> deletaMedico(@PathVariable("id") Long id) throws IOException {
         return medicoService.deletaMedico(id);
     }
 
     @PutMapping(value ="/atualizar")
-    public Medico atualizarMedico(@RequestBody Medico medico) {
+    public Medico atualizarMedico(@RequestBody Medico medico) throws IOException {
         return medicoService.atualizaMedico(medico);
     }
 }

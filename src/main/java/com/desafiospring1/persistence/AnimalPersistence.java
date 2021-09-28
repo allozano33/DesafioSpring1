@@ -4,6 +4,7 @@ import com.desafiospring1.dto.AnimalDto;
 import com.desafiospring1.entity.Animal;
 import com.desafiospring1.util.AnimalJson;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class AnimalPersistence {
     private AnimalJson animalJson = new AnimalJson();
     private static List<Animal> listaAnimais = new ArrayList<>();
 
-    public Animal cadastra(Animal animal) {
+    public Animal cadastra(Animal animal) throws IOException {
         animal.setId(animalJson.listar().size() + 1L);
         List<Animal> novaListaAnimais = animalJson.listar();
         novaListaAnimais.add(animal);
@@ -37,7 +38,7 @@ public class AnimalPersistence {
         return null;
     }
 
-    public List<Animal> deletaAnimal(Long id) {
+    public List<Animal> deletaAnimal(Long id) throws IOException {
         listaAnimais = animalJson.listar();
         for(int i=0; i<listaAnimais.size();i++){
             if(listaAnimais.get(i).getId().equals(id)){
@@ -48,7 +49,7 @@ public class AnimalPersistence {
         return animalJson.listar();
     }
 
-    public Animal atualizaAnimal(Animal animal){
+    public Animal atualizaAnimal(Animal animal) throws IOException {
         listaAnimais = animalJson.listar();
         for (int i = 0; i < listaAnimais.size(); i++) {
             if (listaAnimais.get(i).getId().equals(animal.getId())) {

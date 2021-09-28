@@ -6,6 +6,7 @@ import com.desafiospring1.persistence.ConsultaPersistence;
 import com.desafiospring1.persistence.ProprietarioPersistence;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -21,7 +22,7 @@ public class ProprietarioService {
         return true;
     }
 
-    public Proprietario cadastrar(Proprietario proprietario) {
+    public Proprietario cadastrar(Proprietario proprietario) throws IOException {
         if (codigoNaoUtilizado(proprietario.getCpf())) {
             proprietario.setId(persistence.listagem().size()+1L);
             return persistence.cadastra(proprietario);
@@ -48,7 +49,7 @@ public class ProprietarioService {
         return false;
     }
 
-    public List<Proprietario> deletaProprietario(Long id) {
+    public List<Proprietario> deletaProprietario(Long id) throws IOException {
         if(!proprietarioEmConsulta(id)) {
             return persistence.deletaProprietario(id);
         } else {
@@ -57,7 +58,7 @@ public class ProprietarioService {
 
     }
 
-    public Proprietario atualizaProprietario(Proprietario proprietario){
+    public Proprietario atualizaProprietario(Proprietario proprietario) throws IOException {
         return persistence.atualizaProprietario(proprietario);
     }
 }

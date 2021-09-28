@@ -16,21 +16,6 @@ public class Consulta {
     private Long idMedico;
     private Long idAnimal;
 
-    public Consulta() {
-
-    }
-
-    public Consulta(Long id, String codigo, LocalDateTime dataHora, String motivo, String diagnostico, String tratamento, Long idMedico, Long idAnimal) {
-        this.id = id;
-        this.codigo = codigo;
-        this.dataHora = dataHora;
-        this.motivo = motivo;
-        this.diagnostico = diagnostico;
-        this.tratamento = tratamento;
-        this.idMedico = idMedico;
-        this.idAnimal = idAnimal;
-    }
-
     @Override
     public String toString() {
         return "{" +

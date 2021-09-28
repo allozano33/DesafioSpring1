@@ -18,21 +18,18 @@ import java.util.List;
 public class AnimalJson implements UtilFile<Animal>, ListagemCompleta<AnimalDto>{
 
     @Override
-    public String manipularJson(List<Animal> animalDto) {
+    public String manipularJson(List<Animal> animalDto) throws IOException {
         JSONObject jsonObject = new JSONObject();
-
-        FileWriter writeFile = null;
-
         jsonObject.put("Animal", animalDto);
+        FileWriter writeFile = new FileWriter("animal.json");
 
         try {
-            writeFile = new FileWriter("animal.json");
             writeFile.write(jsonObject.toJSONString());
-            writeFile.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            writeFile.close();
         }
-
         return jsonObject.toJSONString();
     }
 

@@ -17,22 +17,18 @@ import java.util.List;
 public class ProprietarioJson implements UtilFile<Proprietario>{
 
     @Override
-    public String manipularJson(List<Proprietario> proprietarios) {
-
+    public String manipularJson(List<Proprietario> proprietarios) throws IOException {
         JSONObject jsonObject = new JSONObject();
-
-        FileWriter writeFile = null;
-
         jsonObject.put("Proprietario", proprietarios);
+        FileWriter writeFile = new FileWriter("proprietario.json");
 
         try {
-            writeFile = new FileWriter("proprietario.json");
             writeFile.write(jsonObject.toJSONString());
-            writeFile.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            writeFile.close();
         }
-
         return jsonObject.toJSONString();
     }
 

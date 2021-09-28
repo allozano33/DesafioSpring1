@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class ConsultaController {
     private ConsultaService consultaService;
 
     @PostMapping(value = "/cadastrar")
-    public ResponseEntity<Consulta> cadastraConsulta(@RequestBody Consulta consulta, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<Consulta> cadastraConsulta(@RequestBody Consulta consulta, UriComponentsBuilder uriBuilder) throws IOException {
         Consulta consultaCadastrado = consultaService.cadastrar(consulta);
 
         URI uri = uriBuilder.path("/animal/buscar/{id}").buildAndExpand(consultaCadastrado.getId()).toUri();
@@ -59,17 +60,11 @@ public class ConsultaController {
 
     @GetMapping("/buscar/{id}")
     public Consulta buscaAnimalPorId(@PathVariable("id") Long id) {
-        Consulta consulta = consultaService.buscaConsultaPorId(id);
-        return consulta;
+        return consultaService.buscaConsultaPorId(id);
     }
 
-//    @DeleteMapping(value = "/deletar/{id}")
-//    public List<Consulta> deletaConsulta(@PathVariable("id") Long id) {
-//        return consultaService.deletaConsulta(id);
-//    }
-
     @PutMapping(value = "/atualizar")
-    public Consulta atualizarAnimal(@RequestBody Consulta consulta) {
+    public Consulta atualizarAnimal(@RequestBody Consulta consulta) throws IOException {
         return consultaService.atualizaConsulta(consulta);
     }
 }

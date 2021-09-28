@@ -6,6 +6,7 @@ import com.desafiospring1.entity.Consulta;
 import com.desafiospring1.persistence.ConsultaPersistence;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class ConsultaService {
         return true;
     }
 
-    public Consulta cadastrar(Consulta consulta) {
+    public Consulta cadastrar(Consulta consulta) throws IOException {
         if (codigoNaoUtilizado(consulta.getCodigo())) {
             consulta.setId(persistence.listagem().size() + 1L);
             return persistence.cadastra(consulta);
@@ -60,12 +61,12 @@ public class ConsultaService {
         return persistence.buscaConsultaPorId(id);
     }
 
-    public List<Consulta> deletaConsulta(Long id) {
+    public List<Consulta> deletaConsulta(Long id) throws IOException {
 
         return persistence.deletaConsulta(id);
     }
 
-    public Consulta atualizaConsulta(Consulta consulta) {
+    public Consulta atualizaConsulta(Consulta consulta) throws IOException {
 
         return persistence.atualizaConsulta(consulta);
     }

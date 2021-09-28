@@ -24,21 +24,18 @@ import java.util.List;
 public class ConsultaJson implements UtilFile<Consulta>, ListagemCompleta<ConsultaDto>{
 
     @Override
-    public String manipularJson(List<Consulta> consulta) {
+    public String manipularJson(List<Consulta> consulta) throws IOException {
         JSONObject jsonObject = new JSONObject();
-
-        FileWriter writeFile = null;
-
         jsonObject.put("Consulta", consulta);
+        FileWriter writeFile = new FileWriter("consulta.json");
 
         try {
-            writeFile = new FileWriter("consulta.json");
             writeFile.write(jsonObject.toJSONString());
-            writeFile.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            writeFile.close();
         }
-
         return jsonObject.toJSONString();
     }
 

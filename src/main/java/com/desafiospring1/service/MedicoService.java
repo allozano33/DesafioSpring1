@@ -6,6 +6,7 @@ import com.desafiospring1.persistence.ConsultaPersistence;
 import com.desafiospring1.persistence.MedicoPersistence;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -22,7 +23,7 @@ public class MedicoService {
         return true;
     }
 
-    public Medico cadastrar(Medico medico) {
+    public Medico cadastrar(Medico medico) throws IOException {
         if (codigoNaoUtilizado(medico.getNumeroDeRegistro())) {
             medico.setId(persistence.listagem().size()+1L);
             return persistence.cadastra(medico);
@@ -49,7 +50,7 @@ public class MedicoService {
         return false;
     }
 
-    public List<Medico> deletaMedico(Long id) {
+    public List<Medico> deletaMedico(Long id) throws IOException {
         if(!medicoEmConsulta(id)) {
             return persistence.deletaMedico(id);
         } else {
@@ -57,7 +58,7 @@ public class MedicoService {
         }
     }
 
-    public Medico atualizaMedico(Medico medico){
+    public Medico atualizaMedico(Medico medico) throws IOException {
         return persistence.atualizaMedico(medico);
     }
 }

@@ -7,6 +7,7 @@ import com.desafiospring1.persistence.AnimalPersistence;
 import com.desafiospring1.persistence.ConsultaPersistence;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -23,7 +24,7 @@ public class AnimalService {
         return true;
     }
 
-    public Animal cadastrar(Animal animal) {
+    public Animal cadastrar(Animal animal) throws IOException {
         if (codigoNaoUtilizado(animal.getNumeroPaciente())) {
             animal.setId(persistence.listagem().size()+1L);
             return persistence.cadastra(animal);
@@ -54,7 +55,7 @@ public class AnimalService {
         return false;
     }
 
-    public List<Animal> deletaAnimal(Long id) {
+    public List<Animal> deletaAnimal(Long id) throws IOException {
         if(!animalEmConsulta(id)) {
             return persistence.deletaAnimal(id);
         } else {
@@ -62,7 +63,7 @@ public class AnimalService {
         }
     }
 
-    public Animal atualizaAnimal(Animal animalDto){
+    public Animal atualizaAnimal(Animal animalDto) throws IOException {
         return persistence.atualizaAnimal(animalDto);
     }
 }

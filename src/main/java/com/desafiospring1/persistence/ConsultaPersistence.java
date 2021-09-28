@@ -5,6 +5,7 @@ import com.desafiospring1.dto.ConsultaTotalMedicoDto;
 import com.desafiospring1.entity.Consulta;
 import com.desafiospring1.util.ConsultaJson;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ public class ConsultaPersistence {
     private ConsultaJson consultaJson = new ConsultaJson();
     private static List<Consulta> listaConsultas = new ArrayList<>();
 
-    public Consulta cadastra(Consulta consulta) {
+    public Consulta cadastra(Consulta consulta) throws IOException {
         consulta.setId(consultaJson.listar().size() + 1L);
         List<Consulta> novaListaConsultas = consultaJson.listar();
         novaListaConsultas.add(consulta);
@@ -108,7 +109,7 @@ public class ConsultaPersistence {
         return null;
     }
 
-    public List<Consulta> deletaConsulta(Long id) {
+    public List<Consulta> deletaConsulta(Long id) throws IOException {
         listaConsultas = consultaJson.listar();
         for (int i = 0; i < listaConsultas.size(); i++) {
             if (listaConsultas.get(i).getId().equals(id)) {
@@ -119,7 +120,7 @@ public class ConsultaPersistence {
         return consultaJson.listar();
     }
 
-    public Consulta atualizaConsulta(Consulta consulta) {
+    public Consulta atualizaConsulta(Consulta consulta) throws IOException {
         listaConsultas = consultaJson.listar();
         for (int i = 0; i < listaConsultas.size(); i++) {
             if (listaConsultas.get(i).getId().equals(consulta.getId())) {

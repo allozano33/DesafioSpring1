@@ -8,15 +8,6 @@ public class ConsultaTotalMedicoDto {
     private Integer total;
     private String nomeMedico;
 
-    public ConsultaTotalMedicoDto() {
-
-    }
-
-    public ConsultaTotalMedicoDto(Integer total, String nomeMedico) {
-        this.total = total;
-        this.nomeMedico = nomeMedico;
-    }
-
     @Override
     public String toString() {
         return "{" +

@@ -4,6 +4,8 @@ import com.desafiospring1.entity.Medico;
 import com.desafiospring1.entity.Proprietario;
 import com.desafiospring1.util.ProprietarioJson;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +14,7 @@ public class ProprietarioPersistence {
     private ProprietarioJson proprietarioJson = new ProprietarioJson();
     private static List<Proprietario> listaProprietario = new ArrayList<>();
 
-    public Proprietario cadastra(Proprietario proprietario) {
+    public Proprietario cadastra(Proprietario proprietario) throws IOException {
         proprietario.setId(proprietarioJson.listar().size() + 1L);
         List<Proprietario> novaListaProprietario = proprietarioJson.listar();
         novaListaProprietario.add(proprietario);
@@ -33,7 +35,7 @@ public class ProprietarioPersistence {
         return null;
     }
 
-    public List<Proprietario> deletaProprietario(Long id) {
+    public List<Proprietario> deletaProprietario(Long id) throws IOException {
         listaProprietario = proprietarioJson.listar();
         for(int i=0; i<listaProprietario.size();i++){
             if(listaProprietario.get(i).getId().equals(id)){
@@ -44,7 +46,7 @@ public class ProprietarioPersistence {
         return proprietarioJson.listar();
     }
 
-    public Proprietario atualizaProprietario(Proprietario proprietario){
+    public Proprietario atualizaProprietario(Proprietario proprietario) throws IOException {
         listaProprietario = proprietarioJson.listar();
         for (int i = 0; i < listaProprietario.size(); i++) {
             if (listaProprietario.get(i).getId().equals(proprietario.getId())) {
