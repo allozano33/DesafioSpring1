@@ -13,10 +13,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,28 +42,32 @@ public class ConsultaJson implements UtilFile<Consulta>, ListagemCompleta<Consul
         JSONObject jsonObject;
         JSONParser parser = new JSONParser();
 
+        File file = new File("consulta.json");
+
         try {
-            jsonObject = (JSONObject) parser.parse(new FileReader("consulta.json"));
-            JSONArray lista_consultas = (JSONArray) jsonObject.get("Consulta");
+            if (file.length() != 0) {
+                jsonObject = (JSONObject) parser.parse(new FileReader("consulta.json"));
+                JSONArray lista_consultas = (JSONArray) jsonObject.get("Consulta");
 
-            for (Object con : lista_consultas) {
-                Consulta con_obj = new Consulta();
+                for (Object con : lista_consultas) {
+                    Consulta con_obj = new Consulta();
 
-                JSONObject consulta = (JSONObject) con;
+                    JSONObject consulta = (JSONObject) con;
 
-                con_obj.setId((Long) consulta.get("id"));
-                con_obj.setCodigo((String) consulta.get("codigo"));
+                    con_obj.setId((Long) consulta.get("id"));
+                    con_obj.setCodigo((String) consulta.get("codigo"));
 
-                LocalDateTime dataHora = LocalDateTime.parse((String) consulta.get("dataHora"));
-                con_obj.setDataHora(dataHora);
+                    LocalDateTime dataHora = LocalDateTime.parse((String) consulta.get("dataHora"));
+                    con_obj.setDataHora(dataHora);
 
-                con_obj.setDiagnostico((String) consulta.get("diagnostico"));
-                con_obj.setMotivo((String) consulta.get("motivo"));
-                con_obj.setTratamento((String) consulta.get("tratamento"));
-                con_obj.setIdMedico((Long) consulta.get("idMedico"));
-                con_obj.setIdAnimal((Long) consulta.get("idAnimal"));
+                    con_obj.setDiagnostico((String) consulta.get("diagnostico"));
+                    con_obj.setMotivo((String) consulta.get("motivo"));
+                    con_obj.setTratamento((String) consulta.get("tratamento"));
+                    con_obj.setIdMedico((Long) consulta.get("idMedico"));
+                    con_obj.setIdAnimal((Long) consulta.get("idAnimal"));
 
-                consultas.add(con_obj);
+                    consultas.add(con_obj);
+                }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

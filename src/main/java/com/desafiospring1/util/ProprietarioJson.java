@@ -5,10 +5,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,27 +35,31 @@ public class ProprietarioJson implements UtilFile<Proprietario>{
         JSONObject jsonObject;
         JSONParser parser = new JSONParser();
 
+        File file = new File("proprietario.json");
+
         try {
-            jsonObject = (JSONObject) parser.parse(new FileReader("proprietario.json"));
-            JSONArray lista_proprietarios = (JSONArray) jsonObject.get("Proprietario");
+            if (file.length() != 0) {
+                jsonObject = (JSONObject) parser.parse(new FileReader("proprietario.json"));
+                JSONArray lista_proprietarios = (JSONArray) jsonObject.get("Proprietario");
 
-            for (Object pro : lista_proprietarios) {
-                Proprietario pro_obj = new Proprietario();
+                for (Object pro : lista_proprietarios) {
+                    Proprietario pro_obj = new Proprietario();
 
-                JSONObject proprietario = (JSONObject) pro;
+                    JSONObject proprietario = (JSONObject) pro;
 
-                pro_obj.setId((Long) proprietario.get("id"));
-                pro_obj.setCpf((String) proprietario.get("cpf"));
-                pro_obj.setNome((String) proprietario.get("nome"));
-                pro_obj.setSobrenome((String) proprietario.get("sobrenome"));
+                    pro_obj.setId((Long) proprietario.get("id"));
+                    pro_obj.setCpf((String) proprietario.get("cpf"));
+                    pro_obj.setNome((String) proprietario.get("nome"));
+                    pro_obj.setSobrenome((String) proprietario.get("sobrenome"));
 
-                LocalDate dataDeNascimento = LocalDate.parse((String) proprietario.get("dataDeNascimento"));
-                pro_obj.setDataDeNascimento((dataDeNascimento));
+                    LocalDate dataDeNascimento = LocalDate.parse((String) proprietario.get("dataDeNascimento"));
+                    pro_obj.setDataDeNascimento((dataDeNascimento));
 
-                pro_obj.setEndereco((String) proprietario.get("endereco"));
-                pro_obj.setTelefoneContato((String) proprietario.get("telefoneContato"));
+                    pro_obj.setEndereco((String) proprietario.get("endereco"));
+                    pro_obj.setTelefoneContato((String) proprietario.get("telefoneContato"));
 
-                proprietarios.add(pro_obj);
+                    proprietarios.add(pro_obj);
+                }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
