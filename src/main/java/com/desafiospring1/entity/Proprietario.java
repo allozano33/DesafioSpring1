@@ -25,6 +25,13 @@ public class Proprietario extends Pessoa{
         this.telefoneContato = telefoneContato;
     }
 
+    public Proprietario(String cpf, String nome, String sobrenome, LocalDate dataDeNascimento, String endereco, String telefoneContato) throws ParseException {
+        super(cpf, nome, sobrenome);
+        this.dataDeNascimento = dataDeNascimento;
+        this.endereco = endereco;
+        this.telefoneContato = telefoneContato;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -36,5 +43,10 @@ public class Proprietario extends Pessoa{
                 ", \"endereco\":\"" + endereco + "\"" +
                 ", \"telefoneContato\":\"" + telefoneContato + "\"" +
                 "}";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.getCpf().equals(((Proprietario) obj).getCpf());
     }
 }

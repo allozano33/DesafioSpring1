@@ -16,6 +16,20 @@ public class Animal {
     private String nome;
     private Long idProprietario;
 
+    public Animal() {
+
+    }
+
+    public Animal(String numeroPaciente, String especie, String raca, String cor, LocalDate dataDeNascimento, String nome, Long idProprietario) {
+        this.numeroPaciente = numeroPaciente;
+        this.especie = especie;
+        this.raca = raca;
+        this.cor = cor;
+        this.dataDeNascimento = dataDeNascimento;
+        this.nome = nome;
+        this.idProprietario = idProprietario;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -28,5 +42,10 @@ public class Animal {
                 ", \"nome\":\"" + nome + "\"" +
                 ", \"idProprietario\":" + idProprietario +
                 "}";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.numeroPaciente.equals(((Animal) obj).getNumeroPaciente());
     }
 }

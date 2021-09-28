@@ -1,1 +1,13 @@
-{"Proprietario":[{"id":1, "cpf":"207.470.820-97", "nome":"Carol", "sobrenome":"Ferreira", "dataDeNascimento":"1998-07-23", "endereco":"Rua dos Bobos, 0", "telefoneContato":"56634639"}]}
+{
+  "Proprietario": [
+    {
+      "id": 1,
+      "cpf": "444.444.444-44",
+      "nome": "Joao",
+      "sobrenome": "Silva",
+      "dataDeNascimento": "1963-06-08",
+      "endereco": "Rua Europa, 30",
+      "telefoneContato": "55555555"
+    }
+  ]
+}

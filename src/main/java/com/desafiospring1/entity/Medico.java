@@ -11,13 +11,19 @@ public class Medico extends Pessoa{
     private String numeroDeRegistro;
     private String especialidade;
 
-    public Medico(){
+    public Medico() {
 
     }
 
     public Medico(Long id, String cpf, String nome, String sobrenome, String numeroDeRegistro, String especialidade) throws ParseException {
         super(cpf, nome, sobrenome);
         this.id = id;
+        this.numeroDeRegistro = numeroDeRegistro;
+        this.especialidade = especialidade;
+    }
+
+    public Medico(String cpf, String nome, String sobrenome, String numeroDeRegistro, String especialidade) throws ParseException {
+        super(cpf, nome, sobrenome);
         this.numeroDeRegistro = numeroDeRegistro;
         this.especialidade = especialidade;
     }
@@ -32,5 +38,10 @@ public class Medico extends Pessoa{
                 ", \"numeroDeRegistro\":\"" + numeroDeRegistro + "\"" +
                 ", \"especialidade\":\"" + especialidade + "\"" +
                 "}";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.numeroDeRegistro.equals(((Medico) obj).getNumeroDeRegistro());
     }
 }
