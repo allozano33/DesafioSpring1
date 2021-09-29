@@ -13,7 +13,15 @@ import java.util.List;
 @Service
 public class AnimalService {
 
-    private AnimalPersistence persistence = new AnimalPersistence();
+    private AnimalPersistence persistence;
+
+    public AnimalService() {
+
+    }
+
+    public AnimalService(AnimalPersistence persistence) {
+        this.persistence = persistence;
+    }
 
     private boolean codigoNaoUtilizado(String numeroPaciente) {
         for (Animal animal : persistence.listagem()) {

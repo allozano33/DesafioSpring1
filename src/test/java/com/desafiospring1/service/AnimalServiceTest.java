@@ -19,12 +19,12 @@ public class AnimalServiceTest {
     void deveCadastrarAnimal() throws IOException {
         AnimalPersistence mock = Mockito.mock(AnimalPersistence.class);
         ArrayList<Animal> lista = new ArrayList<>();
-        Animal animal = new Animal("515", "cao", "shi-tzu", "preto", LocalDate.parse("2009-11-30"), "Mockito", 1L);
+        Animal animal = new Animal("515112", "cao", "shi-tzu", "preto", LocalDate.parse("2009-11-30"), "Mockito", 1L);
 
         Mockito.when(mock.cadastra(Mockito.any(Animal.class))).thenReturn(animal);
         Mockito.when(mock.listagem()).thenReturn(lista);
 
-        AnimalService animalService = new AnimalService();
+        AnimalService animalService = new AnimalService(mock);
         animalService.cadastrar(animal);
         assertNotNull(animal.getId());
     }
@@ -33,13 +33,13 @@ public class AnimalServiceTest {
     void naoDeveCadastrarQuandoNumPacienteExistente() throws IOException {
         AnimalPersistence mock = Mockito.mock(AnimalPersistence.class);
         ArrayList<Animal> lista = new ArrayList<>();
-        Animal animal = new Animal("515", "cao", "shi-tzu", "preto", LocalDate.parse("2009-11-30"), "Mockito", 1L);
+        Animal animal = new Animal("5151", "cao", "shi-tzu", "preto", LocalDate.parse("2009-11-30"), "Mockito", 1L);
 
         lista.add(animal);
         Mockito.when(mock.cadastra(Mockito.any(Animal.class))).thenReturn(animal);
         Mockito.when(mock.listagem()).thenReturn(lista);
 
-        AnimalService animalService = new AnimalService();
+        AnimalService animalService = new AnimalService(mock);
         RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
             animalService.cadastrar(animal);
         });

@@ -19,12 +19,12 @@ public class ConsultaServiceTest {
     void deveCadastrarConsulta() throws IOException {
         ConsultaPersistence mock = Mockito.mock(ConsultaPersistence.class);
         ArrayList<Consulta> lista = new ArrayList<>();
-        Consulta consulta = new Consulta("314", LocalDateTime.parse("2015-08-04T10:11:30"), "Pata Quebrada", "Cirurgia", "Repouso", 2L, 2L);
+        Consulta consulta = new Consulta("3140", LocalDateTime.parse("2015-08-04T10:11:30"), "Pata Quebrada", "Cirurgia", "Repouso", 2L, 2L);
 
         Mockito.when(mock.cadastra(Mockito.any(Consulta.class))).thenReturn(consulta);
         Mockito.when(mock.listagem()).thenReturn(lista);
 
-        ConsultaService consultaService = new ConsultaService();
+        ConsultaService consultaService = new ConsultaService(mock);
         consultaService.cadastrar(consulta);
         assertNotNull(consulta.getId());
 
@@ -34,12 +34,12 @@ public class ConsultaServiceTest {
     void naoDeveCadastrarQuandoCodigoExistente() throws IOException {
         ConsultaPersistence mock = Mockito.mock(ConsultaPersistence.class);
         ArrayList<Consulta> lista = new ArrayList<>();
-        Consulta consulta = new Consulta("314", LocalDateTime.parse("2015-08-04T10:11:30"), "Pata Quebrada", "Cirurgia", "Repouso", 2L, 2L);
+        Consulta consulta = new Consulta("3140", LocalDateTime.parse("2015-08-04T10:11:30"), "Pata Quebrada", "Cirurgia", "Repouso", 2L, 2L);
 
         Mockito.when(mock.cadastra(Mockito.any(Consulta.class))).thenReturn(consulta);
         Mockito.when(mock.listagem()).thenReturn(lista);
 
-        ConsultaService consultaService = new ConsultaService();
+        ConsultaService consultaService = new ConsultaService(mock);
         RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
             consultaService.cadastrar(consulta);
         });

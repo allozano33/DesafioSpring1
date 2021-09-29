@@ -12,7 +12,15 @@ import java.util.List;
 @Service
 public class MedicoService {
 
-    private MedicoPersistence persistence = new MedicoPersistence();
+    private MedicoPersistence persistence;
+
+    public MedicoService() {
+
+    }
+
+    public MedicoService(MedicoPersistence persistence) {
+        this.persistence = persistence;
+    }
 
     private boolean codigoNaoUtilizado(String numeroRegistro) {
         for (Medico medico : persistence.listagem()) {

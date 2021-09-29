@@ -11,7 +11,15 @@ import java.util.List;
 
 @Service
 public class ProprietarioService {
-    private ProprietarioPersistence persistence = new ProprietarioPersistence();
+    private ProprietarioPersistence persistence;
+
+    public ProprietarioService() {
+
+    }
+
+    public ProprietarioService(ProprietarioPersistence persistence) {
+        this.persistence = persistence;
+    }
 
     private boolean codigoNaoUtilizado(String cpf) {
         for (Proprietario proprietario : persistence.listagem()) {

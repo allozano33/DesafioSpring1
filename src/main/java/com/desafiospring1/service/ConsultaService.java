@@ -7,13 +7,20 @@ import com.desafiospring1.persistence.ConsultaPersistence;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
 public class ConsultaService {
 
-    private ConsultaPersistence persistence = new ConsultaPersistence();
+    private ConsultaPersistence persistence;
+
+    public ConsultaService() {
+
+    }
+
+    public ConsultaService(ConsultaPersistence persistence) {
+        this.persistence = persistence;
+    }
 
     private boolean codigoNaoUtilizado(String codigo) {
         for (Consulta consulta : persistence.listagem()) {

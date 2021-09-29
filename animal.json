@@ -2,27 +2,7 @@
   "Animal": [
     {
       "id": 1,
-      "numeroPaciente": "55",
-      "especie": "cao",
-      "raca": "shi-tzu",
-      "cor": "preto",
-      "dataDeNascimento": "2009-11-30",
-      "nome": "Mockito",
-      "idProprietario": 1
-    },
-    {
-      "id": 2,
-      "numeroPaciente": "33",
-      "especie": "gato",
-      "raca": "siames",
-      "cor": "branco",
-      "dataDeNascimento": "2017-08-17",
-      "nome": "Amora",
-      "idProprietario": 3
-    },
-    {
-      "id": 3,
-      "numeroPaciente": "515",
+      "numeroPaciente": "51512",
       "especie": "cao",
       "raca": "shi-tzu",
       "cor": "preto",

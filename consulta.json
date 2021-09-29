@@ -49,6 +49,16 @@
       "tratamento": "Repouso",
       "idMedico": 2,
       "idAnimal": 2
+    },
+    {
+      "id": 6,
+      "codigo": "3140",
+      "dataHora": "2015-08-04T10:11:30",
+      "motivo": "Pata Quebrada",
+      "diagnostico": "Cirurgia",
+      "tratamento": "Repouso",
+      "idMedico": 2,
+      "idAnimal": 2
     }
   ]
 }

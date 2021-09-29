@@ -19,12 +19,12 @@ public class MedicoServiceTest {
     void deveCadastrarMedico() throws IOException, ParseException {
         MedicoPersistence mock = Mockito.mock(MedicoPersistence.class);
         ArrayList<Medico> lista = new ArrayList<>();
-        Medico medico = new Medico("777", "ze", "alves", "crmv-44444", "equinos");
+        Medico medico = new Medico("7771", "ze", "alves", "crmv-444441", "equinos");
 
         Mockito.when(mock.cadastra(Mockito.any(Medico.class))).thenReturn(medico);
         Mockito.when(mock.listagem()).thenReturn(lista);
 
-        MedicoService medicoService = new MedicoService();
+        MedicoService medicoService = new MedicoService(mock);
         medicoService.cadastrar(medico);
         assertNotNull(medico.getId());
     }
@@ -33,13 +33,13 @@ public class MedicoServiceTest {
     void naoDeveCadastrarQuandoNumRegistroExistente() throws IOException, ParseException {
         MedicoPersistence mock = Mockito.mock(MedicoPersistence.class);
         ArrayList<Medico> lista = new ArrayList<>();
-        Medico medico = new Medico("777", "ze", "alves", "crmv-44444", "equinos");
+        Medico medico = new Medico("7771", "ze", "alves", "crmv-444441", "equinos");
 
         lista.add(medico);
         Mockito.when(mock.cadastra(Mockito.any(Medico.class))).thenReturn(medico);
         Mockito.when(mock.listagem()).thenReturn(lista);
 
-        MedicoService medicoService = new MedicoService();
+        MedicoService medicoService = new MedicoService(mock);
         RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
             medicoService.cadastrar(medico);
         });
@@ -48,4 +48,20 @@ public class MedicoServiceTest {
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
+
+//    @Test
+//    void deveListarMedico() throws ParseException, IOException {
+////Cria Mock da dependência
+//        MedicoPersistence mock = Mockito.mock(MedicoPersistence.class);
+//
+//        //Instancia a classe sendo testada passando a dependência Mockada
+//        MedicoService medicoService = new MedicoService();
+//
+//        //chama o método sendo testado
+//        medicoService.listar();
+//
+//        //Verifica se o método da dependência foi chamado (incluindo o parâmetro exato)
+//        Mockito.verify(mock).listagem();
+//
+//    }
 }

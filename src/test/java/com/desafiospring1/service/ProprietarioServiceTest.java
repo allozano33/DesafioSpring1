@@ -25,7 +25,7 @@ public class ProprietarioServiceTest {
         Mockito.when(mock.cadastra(Mockito.any(Proprietario.class))).thenReturn(proprietario);
         Mockito.when(mock.listagem()).thenReturn(lista);
 
-        ProprietarioService proprietarioService = new ProprietarioService();
+        ProprietarioService proprietarioService = new ProprietarioService(mock);
         proprietarioService.cadastrar(proprietario);
         assertNotNull(proprietario.getId());
     }
@@ -40,7 +40,7 @@ public class ProprietarioServiceTest {
         Mockito.when(mock.cadastra(Mockito.any(Proprietario.class))).thenReturn(proprietario);
         Mockito.when(mock.listagem()).thenReturn(lista);
 
-        ProprietarioService proprietarioService = new ProprietarioService();
+        ProprietarioService proprietarioService = new ProprietarioService(mock);
         RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
             proprietarioService.cadastrar(proprietario);
         });

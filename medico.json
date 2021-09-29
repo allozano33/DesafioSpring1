@@ -7,6 +7,14 @@
       "sobrenome": "alves",
       "numeroDeRegistro": "crmv-44444",
       "especialidade": "equinos"
+    },
+    {
+      "id": 2,
+      "cpf": "777.1  .   -  ",
+      "nome": "ze",
+      "sobrenome": "alves",
+      "numeroDeRegistro": "crmv-444441",
+      "especialidade": "equinos"
     }
   ]
 }
