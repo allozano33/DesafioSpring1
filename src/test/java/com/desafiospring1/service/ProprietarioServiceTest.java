@@ -20,7 +20,7 @@ public class ProprietarioServiceTest {
     void deveCadastrarProprietario() throws IOException, ParseException {
         ProprietarioPersistence mock = Mockito.mock(ProprietarioPersistence.class);
         ArrayList<Proprietario> lista = new ArrayList<>();
-        Proprietario proprietario = new Proprietario("44444444444", "Joao", "Silva", LocalDate.parse("1963-06-08"), "Rua Europa, 30", "55555555");
+        Proprietario proprietario = new Proprietario("54444444444", "Joao", "Silva", LocalDate.parse("1963-06-08"), "Rua Europa, 30", "55555555");
 
         Mockito.when(mock.cadastra(Mockito.any(Proprietario.class))).thenReturn(proprietario);
         Mockito.when(mock.listagem()).thenReturn(lista);

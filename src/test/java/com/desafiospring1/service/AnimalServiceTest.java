@@ -19,7 +19,7 @@ public class AnimalServiceTest {
     void deveCadastrarAnimal() throws IOException {
         AnimalPersistence mock = Mockito.mock(AnimalPersistence.class);
         ArrayList<Animal> lista = new ArrayList<>();
-        Animal animal = new Animal("55", "cao", "shi-tzu", "preto", LocalDate.parse("2009-11-30"), "Mockito", 1L);
+        Animal animal = new Animal("515", "cao", "shi-tzu", "preto", LocalDate.parse("2009-11-30"), "Mockito", 1L);
 
         Mockito.when(mock.cadastra(Mockito.any(Animal.class))).thenReturn(animal);
         Mockito.when(mock.listagem()).thenReturn(lista);
@@ -33,7 +33,7 @@ public class AnimalServiceTest {
     void naoDeveCadastrarQuandoNumPacienteExistente() throws IOException {
         AnimalPersistence mock = Mockito.mock(AnimalPersistence.class);
         ArrayList<Animal> lista = new ArrayList<>();
-        Animal animal = new Animal("33", "gato", "siames", "branco", LocalDate.parse("2017-08-17"), "Amora", 3L);
+        Animal animal = new Animal("515", "cao", "shi-tzu", "preto", LocalDate.parse("2009-11-30"), "Mockito", 1L);
 
         lista.add(animal);
         Mockito.when(mock.cadastra(Mockito.any(Animal.class))).thenReturn(animal);

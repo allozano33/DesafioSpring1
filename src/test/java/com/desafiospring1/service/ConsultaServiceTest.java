@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ConsultaServiceTest {
 
@@ -19,7 +19,7 @@ public class ConsultaServiceTest {
     void deveCadastrarConsulta() throws IOException {
         ConsultaPersistence mock = Mockito.mock(ConsultaPersistence.class);
         ArrayList<Consulta> lista = new ArrayList<>();
-        Consulta consulta = new Consulta("34", LocalDateTime.parse("2015-08-04T10:11:30"),"Pata Quebrada","Cirurgia","Repouso",2L,2L);
+        Consulta consulta = new Consulta("314", LocalDateTime.parse("2015-08-04T10:11:30"), "Pata Quebrada", "Cirurgia", "Repouso", 2L, 2L);
 
         Mockito.when(mock.cadastra(Mockito.any(Consulta.class))).thenReturn(consulta);
         Mockito.when(mock.listagem()).thenReturn(lista);
@@ -34,7 +34,7 @@ public class ConsultaServiceTest {
     void naoDeveCadastrarQuandoCodigoExistente() throws IOException {
         ConsultaPersistence mock = Mockito.mock(ConsultaPersistence.class);
         ArrayList<Consulta> lista = new ArrayList<>();
-        Consulta consulta = new Consulta("34", LocalDateTime.parse("2015-08-04T10:11:30"),"Pata Quebrada","Cirurgia","Repouso",2L,2L);
+        Consulta consulta = new Consulta("314", LocalDateTime.parse("2015-08-04T10:11:30"), "Pata Quebrada", "Cirurgia", "Repouso", 2L, 2L);
 
         Mockito.when(mock.cadastra(Mockito.any(Consulta.class))).thenReturn(consulta);
         Mockito.when(mock.listagem()).thenReturn(lista);
