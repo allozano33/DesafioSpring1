@@ -34,7 +34,7 @@ public class ProprietarioServiceTest {
     void naoDeveCadastrarQuandoNumPacienteExistente() throws IOException, ParseException {
         ProprietarioPersistence mock = Mockito.mock(ProprietarioPersistence.class);
         ArrayList<Proprietario> lista = new ArrayList<>();
-        Proprietario proprietario = new Proprietario("44444444444", "Joao", "Silva", LocalDate.parse("1963-06-08"), "Rua Europa, 30", "55555555");
+        Proprietario proprietario = new Proprietario("44444444999", "Joao", "Silva", LocalDate.parse("1963-06-08"), "Rua Europa, 30", "55555555");
 
         lista.add(proprietario);
         Mockito.when(mock.cadastra(Mockito.any(Proprietario.class))).thenReturn(proprietario);

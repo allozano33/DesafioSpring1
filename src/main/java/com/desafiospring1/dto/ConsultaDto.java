@@ -17,6 +17,21 @@ public class ConsultaDto {
     private Medico medico;
     private AnimalDto animalDto;
 
+    public ConsultaDto(){
+
+    }
+
+    public ConsultaDto(Long id, String codigo, LocalDateTime dataHora, String motivo, String diagnostico, String tratamento, Medico medico, AnimalDto animalDto) {
+        this.id = id;
+        this.codigo = codigo;
+        this.dataHora = dataHora;
+        this.motivo = motivo;
+        this.diagnostico = diagnostico;
+        this.tratamento = tratamento;
+        this.medico = medico;
+        this.animalDto = animalDto;
+    }
+
     @Override
     public String toString() {
         return "{" +

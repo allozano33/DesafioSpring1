@@ -109,17 +109,6 @@ public class ConsultaPersistence {
         return null;
     }
 
-    public List<Consulta> deletaConsulta(Long id) throws IOException {
-        listaConsultas = consultaJson.listar();
-        for (int i = 0; i < listaConsultas.size(); i++) {
-            if (listaConsultas.get(i).getId().equals(id)) {
-                listaConsultas.remove(i);
-            }
-        }
-        consultaJson.manipularJson(listaConsultas);
-        return consultaJson.listar();
-    }
-
     public Consulta atualizaConsulta(Consulta consulta) throws IOException {
         listaConsultas = consultaJson.listar();
         for (int i = 0; i < listaConsultas.size(); i++) {

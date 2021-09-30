@@ -68,13 +68,7 @@ public class ConsultaService {
         return persistence.buscaConsultaPorId(id);
     }
 
-    public List<Consulta> deletaConsulta(Long id) throws IOException {
-
-        return persistence.deletaConsulta(id);
-    }
-
     public Consulta atualizaConsulta(Consulta consulta) throws IOException {
-
         return persistence.atualizaConsulta(consulta);
     }
 }
