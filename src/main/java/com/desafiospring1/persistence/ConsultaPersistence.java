@@ -49,7 +49,6 @@ public class ConsultaPersistence {
         List<ConsultaDto> consultas = novaListaConsultas.stream()
                 .sorted((ConsultaDto a, ConsultaDto b) -> a.getAnimalDto().getProprietario().getNome().compareTo(b.getAnimalDto().getProprietario().getNome()))
                 .collect(Collectors.toList());
-
         return consultas;
     }
 
