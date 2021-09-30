@@ -30,6 +30,17 @@ public class Animal {
         this.idProprietario = idProprietario;
     }
 
+    public Animal (Long id, String numeroPaciente, String especie, String raca, String cor, LocalDate dataDeNascimento, String nome, Long idProprietario) {
+        this.id = id;
+        this.numeroPaciente = numeroPaciente;
+        this.especie = especie;
+        this.raca = raca;
+        this.cor = cor;
+        this.dataDeNascimento = dataDeNascimento;
+        this.nome = nome;
+        this.idProprietario = idProprietario;
+    }
+
     @Override
     public String toString() {
         return "{" +
