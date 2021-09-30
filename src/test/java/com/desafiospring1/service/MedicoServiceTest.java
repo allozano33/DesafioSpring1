@@ -9,9 +9,11 @@ import org.mockito.Mockito;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
 
 public class MedicoServiceTest {
 
@@ -49,19 +51,94 @@ public class MedicoServiceTest {
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
+    @Test
+    void deveListarMedico() throws ParseException, IOException {
+        //Cria Mock da dependência
+        MedicoPersistence mock = Mockito.mock(MedicoPersistence.class);
+
+        //Instancia a classe sendo testada passando a dependência Mockada
+        MedicoService medicoService = new MedicoService(mock);
+
+        //chama o método sendo testado
+        medicoService.listar();
+
+        //Verifica se o método da dependência foi chamado (incluindo o parâmetro exato)
+        Mockito.verify(mock).listagem();
+        assertNotNull(medicoService.listar());
+    }
+
+    //    deveBuscarMedicoPorId
+    @Test
+    void deveBuscarMedicoPorId() throws ParseException {
+        MedicoPersistence mock = Mockito.mock(MedicoPersistence.class);
+        Medico medico = new Medico(1L, "3140", "wes", "alves", "crmv-55555", "aves");
+        when(mock.buscaMedicoPorId(1L)).thenReturn(medico);
+
+        MedicoService medicoService = new MedicoService(mock);
+        Medico medico1 = medicoService.buscaMedicoPorId(1L);
+        assertNotNull(medico1.getId());
+    }
+
+    //deveBuscarMedicoEmConsulta
 //    @Test
-//    void deveListarMedico() throws ParseException, IOException {
-////Cria Mock da dependência
+//    void deveVerificarMedicoEmConsulta() throws ParseException {
 //        MedicoPersistence mock = Mockito.mock(MedicoPersistence.class);
+//        Medico medico = new Medico(1L, "3140", "wes", "alves", "crmv-55555", "aves");
+//        when(mock.buscaMedicoPorId(1L)).thenReturn(medico);
 //
-//        //Instancia a classe sendo testada passando a dependência Mockada
-//        MedicoService medicoService = new MedicoService();
+//        MedicoService medicoService = new MedicoService(mock);
+//        Medico medico1 = medicoService.buscaMedicoPorId(1L);
+//        assertNotNull(medico1.getId());
+//    }
+
+    //deveDeletarMedico
+    @Test
+    void deveDeletarMedico() throws IOException, ParseException {
+        MedicoPersistence mock = Mockito.mock(MedicoPersistence.class);
+        List<Medico> lista = new ArrayList<>();
+        Medico medico = new Medico(1L, "3140", "wes", "alves", "crmv-55555", "aves");
+
+        MedicoService medicoService = new MedicoService(mock);
+
+        when(mock.deletaMedico(1L)).thenReturn(lista);
+        Assertions.assertTrue(true);
+    }
+
+    //naoDeveDeletarMedico
+//    @Test
+//    void naoDeveDeletarMedico() throws IOException, ParseException {
+//        MedicoPersistence mock = Mockito.mock(MedicoPersistence.class);
+//        ArrayList<Medico> lista = new ArrayList<>();
+//        Medico medico = new Medico("7771", "ze", "alves", "crmv-444441", "equinos");
 //
-//        //chama o método sendo testado
-//        medicoService.listar();
+//        lista.add(medico);
+//        Mockito.when(mock.deletaMedico(1L)).thenReturn(medico);
+//        Mockito.when(mock.listagem()).thenReturn(lista);
+//
+//        MedicoService medicoService = new MedicoService(mock);
+//        RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
+//            medicoService.cadastrar(medico);
+//        });
+//
+//        String expectedMessage = "Código já utilizado";
+//        String actualMessage = exception.getMessage();
+//        assertTrue(actualMessage.contains(expectedMessage));
+//    }
+
+    @Test
+    void deveAtualizarMedico() throws ParseException, IOException {
+        MedicoPersistence mock = Mockito.mock(MedicoPersistence.class);
+        Medico medico = new Medico(1L, "3140", "wes", "alves", "crmv-55555", "aves");
+
+        MedicoService medicoService = new MedicoService(mock);
+
+        when(mock.atualizaMedico(Mockito.any(Medico.class))).thenReturn(medico);
+
+        medicoService.atualizaMedico(medico);
+        Assertions.assertEquals("crmv-55555", medico.getNumeroDeRegistro());
 //
 //        //Verifica se o método da dependência foi chamado (incluindo o parâmetro exato)
-//        Mockito.verify(mock).listagem();
-//
-//    }
+//        Mockito.verify(mock).atualizaMedico(medico);
+//        assertNotNull();
+    }
 }
