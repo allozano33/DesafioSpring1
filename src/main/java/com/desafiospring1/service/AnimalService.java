@@ -13,6 +13,7 @@ import java.util.List;
 @Service
 public class AnimalService {
 
+    public static Animal buscaAnimalPorId;
     private AnimalPersistence persistence;
 
     public AnimalService() {
@@ -49,7 +50,7 @@ public class AnimalService {
         return persistence.listagemCompleta();
     }
 
-    public Animal buscaAnimalPorId(Long id) {
+    public static Animal buscaAnimalPorId (Long id) {
         return persistence.buscaAnimalPorId(id);
     }
 
