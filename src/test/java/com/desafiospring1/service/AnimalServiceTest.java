@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,54 +46,46 @@ public class AnimalServiceTest {
         when(mock.listagem()).thenReturn(lista);
 
         AnimalService animalService = new AnimalService(mock);
-        RuntimeException exception = Assertions.assertThrows(RuntimeException.class, ( ) -> {
+        RuntimeException exception = Assertions.assertThrows(RuntimeException.class,() -> {
             animalService.cadastrar(animal);
         });
 
         String expectedMessage = "Código já utilizado";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
-
-    }
-
-
-    @Test
-    void deveAtualizarAnimal ( ) throws IOException {
-        AnimalPersistence mock = Mockito.mock(AnimalPersistence.class);
-        Animal animal = new Animal(1L, "434", "Gato", "Angora", "Branca", LocalDate.parse("2015-08-04"), "Leão", 43L);
-
-        AnimalService consultaService = new AnimalService(mock);
-
-        when(mock.atualizaAnimal(Mockito.any(Animal.class))).thenReturn(animal);
-
-        consultaService.atualizaAnimal(animal);
-        Assertions.assertEquals("1L", animal.getId());
-
     }
 
     @Test
-    void deveListarAnimalPorId ( ) {
+    void deveListarAnimais(){
         AnimalPersistence mock = Mockito.mock(AnimalPersistence.class);
         List<Animal> lista = animal();
-        when(mock.buscaAnimalPorId(2L)).thenReturn(lista.get(1));
+        when(mock.listagem()).thenReturn(lista);
 
         AnimalService animalService = new AnimalService(mock);
-        Animal animal = AnimalService.buscaAnimalPorId(2L);
-        Assertions.assertEquals(1L, animal.getId());
+        List<Animal> listaRetorno = animalService.listar();
+        Assertions.assertEquals(3, listaRetorno.size());
     }
 
-    private List<Animal> animal ( ) {
+    @Test
+    void deveListarAnimalPorId() throws ParseException {
+        AnimalPersistence mock = Mockito.mock(AnimalPersistence.class);
+        Animal animal = new Animal(1L, "434", "Gato", "Angora", "Branca", LocalDate.parse("2015-08-04"), "Leão", 43L);
+        when(mock.buscaAnimalPorId(1L)).thenReturn(animal);
+
+        AnimalService animalService = new AnimalService(mock);
+        Animal animal1 = animalService.buscaAnimalPorId(1L);
+        assertNotNull(animal1.getId());
+
+
+    }
+
+    private List<Animal> animal() {
         ArrayList<Animal> animal = new ArrayList<>();
 
         animal.add(new Animal(1L, "434", "Gato", "Angora", "Branca", LocalDate.parse("2015-08-04"), "Leão", 43L));
-        animal.add(new Animal(2L, "435", "Cachorro", "Shi-Tzu", "Preta", LocalDate.parse("2015-08-04"), "Gabriell", 23L));
-        animal.add(new Animal(3L, "436", "Gato", "Siames", "Amarela", LocalDate.parse("2015-08-04"), "Stella", 22L));
+        animal.add(new Animal(1L, "435", "Cachorro", "Shi-Tzu", "Preta", LocalDate.parse("2015-08-04"), "Gabriell", 23L));
+        animal.add(new Animal(1L, "436", "Gato", "Siames", "Amarela", LocalDate.parse("2015-08-04"), "Stella", 22L));
 
         return animal;
     }
 }
-
-
-
-
-

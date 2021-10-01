@@ -6,7 +6,6 @@ import com.desafiospring1.entity.Consulta;
 import com.desafiospring1.entity.Medico;
 import com.desafiospring1.entity.Proprietario;
 import com.desafiospring1.persistence.ConsultaPersistence;
-import com.desafiospring1.persistence.MedicoPersistence;
 import com.desafiospring1.persistence.ProprietarioPersistence;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,13 +14,12 @@ import org.mockito.Mockito;
 import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDate;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 public class ProprietarioServiceTest {
