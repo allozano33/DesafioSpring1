@@ -9,12 +9,11 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
-
 @Service
 public class AnimalService {
 
     public static Animal buscaAnimalPorId;
-    private AnimalPersistence persistence;
+    private static AnimalPersistence persistence;
 
     public AnimalService() {
 
@@ -72,7 +71,7 @@ public class AnimalService {
         }
     }
 
-    public Animal atualizaAnimal(Animal animalDto) throws IOException {
+    public static Animal atualizaAnimal (Animal animalDto) throws IOException {
         return persistence.atualizaAnimal(animalDto);
     }
 }
