@@ -2,6 +2,7 @@ package com.desafiospring1.service;
 
 import com.desafiospring1.dto.ConsultaDto;
 import com.desafiospring1.entity.Medico;
+
 import com.desafiospring1.persistence.ConsultaPersistence;
 import com.desafiospring1.persistence.MedicoPersistence;
 import org.springframework.stereotype.Service;
@@ -13,13 +14,17 @@ import java.util.List;
 public class MedicoService {
 
     private MedicoPersistence persistence;
+    private ConsultaPersistence persistenceConsulta;
 
-    public MedicoService() {
-
-    }
+    public MedicoService() {}
 
     public MedicoService(MedicoPersistence persistence) {
         this.persistence = persistence;
+    }
+
+    public MedicoService(MedicoPersistence persistence, ConsultaPersistence persistenceConsulta) {
+        this.persistence = persistence;
+        this.persistenceConsulta = persistenceConsulta;
     }
 
     private boolean codigoNaoUtilizado(String numeroRegistro) {
@@ -49,8 +54,7 @@ public class MedicoService {
     }
 
     public boolean medicoEmConsulta(Long id) {
-        ConsultaPersistence consultaPersistence = new ConsultaPersistence();
-        for (ConsultaDto consultaDto : consultaPersistence.listagemCompleta()) {
+        for (ConsultaDto consultaDto : persistenceConsulta.listagemCompleta()) {
             if (consultaDto.getMedico().getId().equals(id)) {
                 return true;
             }
