@@ -2,7 +2,6 @@ package com.desafiospring1.service;
 
 import com.desafiospring1.dto.AnimalDto;
 import com.desafiospring1.dto.ConsultaDto;
-import com.desafiospring1.entity.Consulta;
 import com.desafiospring1.entity.Medico;
 import com.desafiospring1.entity.Proprietario;
 import com.desafiospring1.persistence.ConsultaPersistence;
@@ -153,16 +152,6 @@ public class ProprietarioServiceTest {
 
     }
 
-    private List<Consulta> consultas(){
-        ArrayList<Consulta> consulta = new ArrayList<>();
-
-        consulta.add(new Consulta(1L, "Cons-123", LocalDateTime.parse("2021-08-04T10:11:30"), "Teste", "teste", "tratamento", 1L, 2L));
-        consulta.add(new Consulta(2L, "Cons-567", LocalDateTime.parse("2021-09-25T10:11:30"), "Teste", "teste", "tratamento", 1L, 2L));
-        consulta.add(new Consulta(3L, "Cons-890", LocalDateTime.parse("2021-04-21T10:11:30"), "Teste", "teste", "tratamento", 1L, 2L));
-
-        return consulta;
-    }
-
     private List<ConsultaDto> consultasDto(){
         ArrayList<ConsultaDto> consultasDto = new ArrayList<>();
 
@@ -192,7 +181,6 @@ public class ProprietarioServiceTest {
         animal.setCor("Branca");
         animal.setDataDeNascimento(LocalDate.parse("1987-08-04"));
         animal.setProprietario(proprietario);
-
 
         consultasDto.add(new ConsultaDto(1L, "Cons-123", LocalDateTime.parse("2021-08-04T10:11:30"), "Teste", "teste", "tratamento", medico, animal));
         consultasDto.add(new ConsultaDto(2L, "Cons-567", LocalDateTime.parse("2021-07-25T10:11:30"), "Teste", "teste", "tratamento", medico, animal));

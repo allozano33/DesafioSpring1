@@ -29,15 +29,6 @@ public class AnimalPersistence {
         return animalJson.listarDadosCompletos();
     }
 
-    public Animal buscaAnimalPorId(Long id) {
-        for (Animal animal : animalJson.listar()) {
-            if (animal.getId().equals(id)) {
-                return animal;
-            }
-        }
-        return null;
-    }
-
     public List<Animal> deletaAnimal(Long id) throws IOException {
         listaAnimais = animalJson.listar();
         for(int i=0; i<listaAnimais.size();i++){

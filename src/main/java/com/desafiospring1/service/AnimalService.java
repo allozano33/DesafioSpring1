@@ -9,11 +9,12 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+
 @Service
 public class AnimalService {
 
-    public static Animal buscaAnimalPorId;
-    private static AnimalPersistence persistence;
+    private AnimalPersistence persistence;
+    private ConsultaPersistence persistenceConsulta;
 
     public AnimalService() {
 
@@ -23,7 +24,9 @@ public class AnimalService {
         this.persistence = persistence;
     }
 
-    public AnimalService (AnimalPersistence mockAnimalPersistence, AnimalPersistence mockAnimalPersistence1) {
+    public AnimalService(AnimalPersistence mockAnimalPersistence, ConsultaPersistence persistenceConsulta) {
+        this.persistence = mockAnimalPersistence;
+        this.persistenceConsulta = persistenceConsulta;
     }
 
     private boolean codigoNaoUtilizado(String numeroPaciente) {
@@ -52,13 +55,19 @@ public class AnimalService {
         return persistence.listagemCompleta();
     }
 
-    public static Animal buscaAnimalPorId (Long id) {
-        return persistence.buscaAnimalPorId(id);
+    public Animal buscaAnimalPorId(Long id) {
+        List<Animal> animais = persistence.listagem();
+
+        for (Animal animal : animais) {
+            if (animal.getId().equals(id)) {
+                return animal;
+            }
+        }
+        return null;
     }
 
     private boolean animalEmConsulta(Long id) {
-        ConsultaPersistence consultaPersistence = new ConsultaPersistence();
-        for (ConsultaDto consultaDto : consultaPersistence.listagemCompleta()) {
+        for (ConsultaDto consultaDto : persistenceConsulta.listagemCompleta()) {
             if (consultaDto.getAnimalDto().getId().equals(id)) {
                 return true;
             }
@@ -74,7 +83,7 @@ public class AnimalService {
         }
     }
 
-    public static Animal atualizaAnimal (Animal animalDto) throws IOException {
+    public Animal atualizaAnimal (Animal animalDto) throws IOException {
         return persistence.atualizaAnimal(animalDto);
     }
 }

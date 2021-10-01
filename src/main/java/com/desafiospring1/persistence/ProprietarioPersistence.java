@@ -40,7 +40,7 @@ public class ProprietarioPersistence {
                 listaProprietario.remove(i);
             }
         }
-       proprietarioJson.manipularJson(listaProprietario);
+        proprietarioJson.manipularJson(listaProprietario);
         return proprietarioJson.listar();
     }
 

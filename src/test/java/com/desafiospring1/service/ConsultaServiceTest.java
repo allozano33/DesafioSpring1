@@ -79,9 +79,8 @@ public class ConsultaServiceTest {
         Assertions.assertNotNull(consulta);
     }
 
-
     @Test
-    void naoDeveListarNullConsultaPorId(){
+    void deveListarNullConsultaPorId(){
         ConsultaPersistence mock = Mockito.mock(ConsultaPersistence.class);
         List<Consulta> lista = consultas();
         when(mock.buscaConsultaPorId()).thenReturn(lista);
