@@ -16,7 +16,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -73,11 +72,23 @@ public class ConsultaServiceTest {
     void deveListarConsultaPorId(){
         ConsultaPersistence mock = Mockito.mock(ConsultaPersistence.class);
         List<Consulta> lista = consultas();
-        when(mock.buscaConsultaPorId(2L)).thenReturn(lista.get(1));
+        when(mock.buscaConsultaPorId()).thenReturn(lista);
 
         ConsultaService consultaService = new ConsultaService(mock);
         Consulta consulta = consultaService.buscaConsultaPorId(2L);
-        Assertions.assertEquals("Cons-567",consulta.getCodigo());
+        Assertions.assertNotNull(consulta);
+    }
+
+
+    @Test
+    void naoDeveListarNullConsultaPorId(){
+        ConsultaPersistence mock = Mockito.mock(ConsultaPersistence.class);
+        List<Consulta> lista = consultas();
+        when(mock.buscaConsultaPorId()).thenReturn(lista);
+
+        ConsultaService consultaService = new ConsultaService(mock);
+        Consulta consulta = consultaService.buscaConsultaPorId(4L);
+        Assertions.assertNull(consulta);
     }
 
     @Test
@@ -96,9 +107,9 @@ public class ConsultaServiceTest {
     @Test
     void deveListarAnimalPorData(){
         ConsultaPersistence mock = Mockito.mock(ConsultaPersistence.class);
-        List<ConsultaDto> lista = ordenaEListaAnimalPorData(2L, consultasDto());
+        List<ConsultaDto> lista = consultasDto();
 
-        when(mock.listagemAnimalPorData(2L)).thenReturn(lista);
+        when(mock.listagemCompleta()).thenReturn(lista);
 
         ConsultaService consultaService = new ConsultaService(mock);
 
@@ -118,48 +129,38 @@ public class ConsultaServiceTest {
     }
 
     @Test
-    void deveBuscaConsultaPorId(){
-        ConsultaPersistence mock = Mockito.mock(ConsultaPersistence.class);
-        List<Consulta> lista = consultas();
-
-        when(mock.buscaConsultaPorId(2L)).thenReturn(lista.get(1));
-
-        ConsultaService consultaService = new ConsultaService(mock);
-
-        Consulta consulta = consultaService.buscaConsultaPorId(2L);
-        Assertions.assertEquals("Rotina",consulta.getMotivo());
-    }
-
-    @Test
     void deveListarTotalDeConsultasPorMedico(){
         ConsultaPersistence mock = Mockito.mock(ConsultaPersistence.class);
-        List<ConsultaTotalMedicoDto> consultaTotalMedico = totalMedicoDtos();
+        List<ConsultaDto> consultas = consultasDto();
 
-        when(mock.listarTotalDeConsultaPorMedico()).thenReturn(consultaTotalMedico);
+        when(mock.listagemCompleta()).thenReturn(consultas);
+
         ConsultaService consultaService = new ConsultaService(mock);
-        consultaTotalMedico =  consultaService.listarTotalDeConsultaPorMedico();
-        Assertions.assertEquals(5,consultaTotalMedico.get(1).getTotal());
+
+        List<ConsultaTotalMedicoDto> consultaTotalMedico =  consultaService.listarTotalDeConsultaPorMedico();
+
+        Assertions.assertEquals(3,consultaTotalMedico.get(0).getTotal());
     }
 
     @Test
     void deveListarConsultasDoDia(){
         ConsultaPersistence mock = Mockito.mock(ConsultaPersistence.class);
-        List<ConsultaDto> lista = ordenaListaConsultaDoDia("30-09-2021", consultasDto());
+        List<ConsultaDto> lista = consultasDto();
 
-        when(mock.listagemConsultaPorDia("30-09-2021")).thenReturn(lista);
+        when(mock.listagemCompleta()).thenReturn(lista);
 
         ConsultaService consultaService = new ConsultaService(mock);
 
-        List<ConsultaDto> listaRetorno =  consultaService.listarConsultasDoDia("30-09-2021");
+        List<ConsultaDto> listaRetorno =  consultaService.listarConsultasDoDia("01-10-2021");
         Assertions.assertEquals("Cons-890",listaRetorno.get(0).getCodigo());
     }
 
     @Test
     void deveListarConsultaOrdenadaPorNomeProprietario(){
         ConsultaPersistence mock = Mockito.mock(ConsultaPersistence.class);
-        List<ConsultaDto> lista = ordenaListaConsultaPorNomeProprietario(consultasDto());
+        List<ConsultaDto> lista = consultasDto();
 
-        when(mock.listagemPorNomeProprietario()).thenReturn(lista);
+        when(mock.listagemCompleta()).thenReturn(lista);
 
         ConsultaService consultaService = new ConsultaService(mock);
 
@@ -228,57 +229,8 @@ public class ConsultaServiceTest {
 
         consultaDto.add(new ConsultaDto(1L, "Cons-123", LocalDateTime.parse("2021-08-04T10:11:30"), "Teste", "teste", "tratamento", medico, animal2));
         consultaDto.add(new ConsultaDto(2L, "Cons-567", LocalDateTime.parse("2021-07-25T10:11:30"), "Teste", "teste", "tratamento", medico, animal));
-        consultaDto.add(new ConsultaDto(3L, "Cons-890", LocalDateTime.parse("2021-09-30T10:11:30"), "Teste", "teste", "tratamento", medico, animal2));
+        consultaDto.add(new ConsultaDto(3L, "Cons-890", LocalDateTime.parse("2021-10-01T10:11:30"), "Teste", "teste", "tratamento", medico, animal2));
 
         return consultaDto;
-    }
-
-
-    private List<ConsultaTotalMedicoDto> totalMedicoDtos(){
-        List<ConsultaTotalMedicoDto> consultaTotalMedico = new ArrayList<>();
-
-        ConsultaTotalMedicoDto consultaTotalMedicoDto1 = new ConsultaTotalMedicoDto(2,"Carol");
-        consultaTotalMedico.add(consultaTotalMedicoDto1);
-
-        ConsultaTotalMedicoDto consultaTotalMedicoDto2 = new ConsultaTotalMedicoDto(5,"Wesley");
-        consultaTotalMedico.add(consultaTotalMedicoDto2);
-
-        ConsultaTotalMedicoDto consultaTotalMedicoDto3 = new ConsultaTotalMedicoDto(1,"Alessandro");
-        consultaTotalMedico.add(consultaTotalMedicoDto3);
-
-        return consultaTotalMedico;
-    }
-
-    private List<ConsultaDto> ordenaListaConsultaDoDia(String data, List<ConsultaDto> lista){
-        String[] dataFormatada = data.split("-");
-
-        int ano = Integer.parseInt(dataFormatada[2]);
-        int mes = Integer.parseInt(dataFormatada[1]);
-        int dia = Integer.parseInt(dataFormatada[0]);
-
-        LocalDate dataConvertida = LocalDate.of(ano,mes,dia);
-
-        List<ConsultaDto> consultas = lista.stream()
-                .filter(item -> item.getDataHora().toLocalDate().equals(dataConvertida))
-                .sorted((ConsultaDto a, ConsultaDto b) -> a.getDataHora().compareTo(b.getDataHora()))
-                .collect(Collectors.toList());
-
-        return consultas;
-    }
-
-    private List<ConsultaDto> ordenaListaConsultaPorNomeProprietario(List<ConsultaDto> lista){
-        List<ConsultaDto> consultas = lista.stream()
-                .sorted((ConsultaDto a, ConsultaDto b) -> a.getAnimalDto().getProprietario().getNome().compareTo(b.getAnimalDto().getProprietario().getNome()))
-                .collect(Collectors.toList());
-        return consultas;
-    }
-
-    private List<ConsultaDto> ordenaEListaAnimalPorData(Long id, List<ConsultaDto> lista ) {
-        List<ConsultaDto> consultas = lista.stream()
-                .filter(item -> item.getAnimalDto().getId().equals(id))
-                .sorted((ConsultaDto a, ConsultaDto b) -> b.getDataHora().compareTo(a.getDataHora()))
-                .collect(Collectors.toList());
-
-        return consultas;
     }
 }
