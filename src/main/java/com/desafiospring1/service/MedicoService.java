@@ -48,7 +48,7 @@ public class MedicoService {
         return persistence.buscaMedicoPorId(id);
     }
 
-    private boolean medicoEmConsulta(Long id) {
+    public boolean medicoEmConsulta(Long id) {
         ConsultaPersistence consultaPersistence = new ConsultaPersistence();
         for (ConsultaDto consultaDto : consultaPersistence.listagemCompleta()) {
             if (consultaDto.getMedico().getId().equals(id)) {

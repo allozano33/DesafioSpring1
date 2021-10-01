@@ -79,7 +79,7 @@ public class MedicoServiceTest {
         assertNotNull(medico1.getId());
     }
 
-    //deveBuscarMedicoEmConsulta
+    //deveVerificarSeMedicoEmConsulta
 //    @Test
 //    void deveVerificarMedicoEmConsulta() throws ParseException {
 //        MedicoPersistence mock = Mockito.mock(MedicoPersistence.class);
@@ -105,25 +105,25 @@ public class MedicoServiceTest {
     }
 
     //naoDeveDeletarMedico
-//    @Test
-//    void naoDeveDeletarMedico() throws IOException, ParseException {
-//        MedicoPersistence mock = Mockito.mock(MedicoPersistence.class);
-//        ArrayList<Medico> lista = new ArrayList<>();
-//        Medico medico = new Medico("7771", "ze", "alves", "crmv-444441", "equinos");
-//
-//        lista.add(medico);
-//        Mockito.when(mock.deletaMedico(1L)).thenReturn(medico);
-//        Mockito.when(mock.listagem()).thenReturn(lista);
-//
-//        MedicoService medicoService = new MedicoService(mock);
-//        RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
-//            medicoService.cadastrar(medico);
-//        });
-//
-//        String expectedMessage = "Código já utilizado";
-//        String actualMessage = exception.getMessage();
-//        assertTrue(actualMessage.contains(expectedMessage));
-//    }
+    @Test
+    void naoDeveDeletarMedico() throws IOException, ParseException {
+        MedicoPersistence mock = Mockito.mock(MedicoPersistence.class);
+        ArrayList<Medico> lista = new ArrayList<>();
+        Medico medico = new Medico(1L, "7771", "ze", "alves", "crmv-444441", "equinos");
+
+        lista.add(medico);
+        Mockito.when(mock.deletaMedico(1L)).thenReturn(lista);
+
+        MedicoService medicoService = new MedicoService(mock);
+        RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
+            medicoService.deletaMedico(1L);
+        });
+
+        String expectedMessage = "Médico em consulta, ele não pode ser deletado!";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+
+    }
 
     @Test
     void deveAtualizarMedico() throws ParseException, IOException {
