@@ -59,50 +59,15 @@ public class ProprietarioServiceTest {
     }
 
     @Test
-    void deveListarProprietario() throws ParseException, IOException {
-        //Cria Mock da dependência
+    void deveListarProprietario() {
         ProprietarioPersistence mock = Mockito.mock(ProprietarioPersistence.class);
 
-        //Instancia a classe sendo testada passando a dependência Mockada
         ProprietarioService proprietarioService = new ProprietarioService(mock);
 
-        //chama o método sendo testado
         proprietarioService.listar();
 
-        //Verifica se o método da dependência foi chamado (incluindo o parâmetro exato)
         Mockito.verify(mock).listagem();
         assertNotNull(proprietarioService.listar());
-    }
-
-    @Test
-    void deveVerificarProprietarioEmConsulta() throws IOException, ParseException {
-        ProprietarioPersistence mockProprietarioPersistence = Mockito.mock(ProprietarioPersistence.class);
-        ConsultaPersistence mockConsultaPersistence = Mockito.mock(ConsultaPersistence.class);
-        List<Proprietario> proprietarios = new ArrayList<>();
-
-        Proprietario proprietario = new Proprietario();
-        proprietario.setId(2L);
-        proprietario.setCpf("145.258.658-99");
-        proprietario.setNome("Maria");
-        proprietario.setSobrenome("Alves");
-        proprietario.setEndereco("Rua teste 123");
-        proprietario.setTelefoneContato("159357852");
-        proprietario.setDataDeNascimento(LocalDate.parse("1987-08-04"));
-
-        proprietarios.add(proprietario);
-
-        when(mockProprietarioPersistence.deletaProprietario(2L)).thenReturn(proprietarios);
-
-        ProprietarioService proprietarioService = new ProprietarioService(mockProprietarioPersistence, mockConsultaPersistence);
-        Mockito.when(mockConsultaPersistence.listagemCompleta()).thenReturn(consultasDto());
-
-        RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
-            proprietarioService.deletaProprietario(2L);
-        });
-
-        String expectedMessage = "Proprietario em consulta, ele não pode ser deletado!";
-        String actualMessage = exception.getMessage();
-        assertTrue(actualMessage.contains(expectedMessage));
     }
 
     @Test
@@ -118,20 +83,33 @@ public class ProprietarioServiceTest {
 
 
     @Test
-    void deveDeletarProprietario() throws ParseException, IOException {
+    void deveDeletarProprietario() throws IOException {
+        ProprietarioPersistence mockProprietarioPersistence = Mockito.mock(ProprietarioPersistence.class);
+        ConsultaPersistence mockConsultaPersistence = Mockito.mock(ConsultaPersistence.class);
+        List<Proprietario> proprietarios = new ArrayList<>();
 
-        ProprietarioPersistence mock = Mockito.mock(ProprietarioPersistence.class);
-        List<Proprietario> lista = new ArrayList<>();
+        Proprietario proprietario = new Proprietario();
+        proprietario.setId(1L);
+        proprietario.setCpf("145.258.658-99");
+        proprietario.setNome("Maria");
+        proprietario.setSobrenome("Alves");
+        proprietario.setEndereco("Rua teste 123");
+        proprietario.setTelefoneContato("159357852");
+        proprietario.setDataDeNascimento(LocalDate.parse("1987-08-04"));
 
-        ProprietarioService proprietarioService = new ProprietarioService(mock);
+        proprietarios.add(proprietario);
 
-        when(mock.deletaProprietario(1L)).thenReturn(lista);
-        Assertions.assertTrue(true);
+        when(mockProprietarioPersistence.deletaProprietario(3L)).thenReturn(proprietarios);
+
+        ProprietarioService proprietarioService = new ProprietarioService(mockProprietarioPersistence, mockConsultaPersistence);
+        Mockito.when(mockConsultaPersistence.listagemCompleta()).thenReturn(consultasDto());
+
+        List<Proprietario> proprietarios1 = proprietarioService.deletaProprietario(3L);
+        assertNotNull(proprietarios1);
     }
 
-    //<--------------Precisa Ser TESTADO---------------->//
     @Test
-    void naoDeveDeletarQuandoProprietarioEmConsulta() throws ParseException, IOException {
+    void naoDeveDeletarQuandoProprietarioEmConsulta() throws IOException {
         ProprietarioPersistence mockProprietarioPersistence = Mockito.mock(ProprietarioPersistence.class);
         ConsultaPersistence mockConsultaPersistence = Mockito.mock(ConsultaPersistence.class);
         List<Proprietario> proprietarios = new ArrayList<>();
