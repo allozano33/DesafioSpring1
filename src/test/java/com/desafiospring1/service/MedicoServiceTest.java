@@ -6,7 +6,6 @@ import com.desafiospring1.entity.Medico;
 import com.desafiospring1.entity.Proprietario;
 import com.desafiospring1.persistence.ConsultaPersistence;
 import com.desafiospring1.persistence.MedicoPersistence;
-import com.desafiospring1.persistence.ProprietarioPersistence;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -59,22 +58,17 @@ public class MedicoServiceTest {
     }
 
     @Test
-    void deveListarMedico() throws ParseException, IOException {
-        //Cria Mock da dependência
+    void deveListarMedico() {
         MedicoPersistence mock = Mockito.mock(MedicoPersistence.class);
 
-        //Instancia a classe sendo testada passando a dependência Mockada
         MedicoService medicoService = new MedicoService(mock);
 
-        //chama o método sendo testado
         medicoService.listar();
 
-        //Verifica se o método da dependência foi chamado (incluindo o parâmetro exato)
         Mockito.verify(mock).listagem();
         assertNotNull(medicoService.listar());
     }
 
-    //    deveBuscarMedicoPorId
     @Test
     void deveBuscarMedicoPorId() throws ParseException {
         MedicoPersistence mock = Mockito.mock(MedicoPersistence.class);
@@ -86,34 +80,34 @@ public class MedicoServiceTest {
         assertNotNull(medico1.getId());
     }
 
-    //deveVerificarSeMedicoEmConsulta
-//    @Test
-//    void deveVerificarMedicoEmConsulta() throws ParseException {
-//        MedicoPersistence mock = Mockito.mock(MedicoPersistence.class);
-//        Medico medico = new Medico(1L, "3140", "wes", "alves", "crmv-55555", "aves");
-//        when(mock.buscaMedicoPorId(1L)).thenReturn(medico);
-//
-//        MedicoService medicoService = new MedicoService(mock);
-//        Medico medico1 = medicoService.buscaMedicoPorId(1L);
-//        assertNotNull(medico1.getId());
-//    }
-
-    //deveDeletarMedico
     @Test
-    void deveDeletarMedico() throws IOException, ParseException {
-        MedicoPersistence mock = Mockito.mock(MedicoPersistence.class);
-        List<Medico> lista = new ArrayList<>();
-        Medico medico = new Medico(1L, "3140", "wes", "alves", "crmv-55555", "aves");
+    void deveDeletarMedico() throws IOException{
+        MedicoPersistence mockMedicoPersistence = Mockito.mock(MedicoPersistence.class);
+        ConsultaPersistence mockConsultaPersistence = Mockito.mock(ConsultaPersistence.class);
+        List<Medico> medicos = new ArrayList<>();
 
-        MedicoService medicoService = new MedicoService(mock);
+        Medico medico = new Medico();
+        medico.setId(1L);
+        medico.setCpf("123.254.256-77");
+        medico.setNome("Joao");
+        medico.setSobrenome("Silva");
+        medico.setNumeroDeRegistro("CRMV-1234");
+        medico.setEspecialidade("Clinico");
 
-        when(mock.deletaMedico(1L)).thenReturn(lista);
-        Assertions.assertTrue(true);
+        medicos.add(medico);
+
+        when(mockMedicoPersistence.deletaMedico(2L)).thenReturn(medicos);
+
+        MedicoService medicoService = new MedicoService(mockMedicoPersistence, mockConsultaPersistence);
+        Mockito.when(mockConsultaPersistence.listagemCompleta()).thenReturn(consultasDto());
+
+        List<Medico> medicos2 = medicoService.deletaMedico(2L);
+
+        Assertions.assertNotNull(medicos2);
     }
 
-    //naoDeveDeletarMedico
     @Test
-    void naoDeveDeletarMedico() throws IOException, ParseException {
+    void naoDeveDeletarMedicoEmConsulta() throws IOException {
         MedicoPersistence mockMedicoPersistence = Mockito.mock(MedicoPersistence.class);
         ConsultaPersistence mockConsultaPersistence = Mockito.mock(ConsultaPersistence.class);
         List<Medico> medicos = new ArrayList<>();
@@ -130,7 +124,7 @@ public class MedicoServiceTest {
 
         when(mockMedicoPersistence.deletaMedico(1L)).thenReturn(medicos);
 
-        MedicoService medicoService = new MedicoService(mockMedicoPersistence,mockConsultaPersistence);
+        MedicoService medicoService = new MedicoService(mockMedicoPersistence, mockConsultaPersistence);
         Mockito.when(mockConsultaPersistence.listagemCompleta()).thenReturn(consultasDto());
 
         RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
@@ -154,10 +148,6 @@ public class MedicoServiceTest {
 
         medicoService.atualizaMedico(medico);
         Assertions.assertEquals("crmv-55555", medico.getNumeroDeRegistro());
-//
-//        //Verifica se o método da dependência foi chamado (incluindo o parâmetro exato)
-//        Mockito.verify(mock).atualizaMedico(medico);
-//        assertNotNull();
     }
 
     private List<ConsultaDto> consultasDto(){
@@ -189,7 +179,6 @@ public class MedicoServiceTest {
         animal.setCor("Branca");
         animal.setDataDeNascimento(LocalDate.parse("1987-08-04"));
         animal.setProprietario(proprietario);
-
 
         consultasDto.add(new ConsultaDto(1L, "Cons-123", LocalDateTime.parse("2021-08-04T10:11:30"), "Teste", "teste", "tratamento", medico, animal));
         consultasDto.add(new ConsultaDto(2L, "Cons-567", LocalDateTime.parse("2021-07-25T10:11:30"), "Teste", "teste", "tratamento", medico, animal));
