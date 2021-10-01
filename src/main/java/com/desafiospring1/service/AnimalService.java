@@ -23,6 +23,9 @@ public class AnimalService {
         this.persistence = persistence;
     }
 
+    public AnimalService (AnimalPersistence mockAnimalPersistence, AnimalPersistence mockAnimalPersistence1) {
+    }
+
     private boolean codigoNaoUtilizado(String numeroPaciente) {
         for (Animal animal : persistence.listagem()) {
             if (animal.getNumeroPaciente().equals(numeroPaciente)) {
