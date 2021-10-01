@@ -28,7 +28,7 @@ public class AnimalServiceTest {
     @Test
     void deveCadastrarAnimal() throws IOException {
         AnimalPersistence mock = mock(AnimalPersistence.class);
-        ArrayList<Animal> lista = new ArrayList<>();
+        List<Animal> lista = new ArrayList<>();
         Animal animal = new Animal(5L, "515112", "cao", "shi-tzu", "preto", LocalDate.parse("2009-11-30"), "Mockito", 1L);
 
         when(mock.cadastra(any(Animal.class))).thenReturn(animal);
@@ -42,7 +42,7 @@ public class AnimalServiceTest {
     @Test
     void naoDeveCadastrarQuandoNumPacienteExistente() throws IOException {
         AnimalPersistence mock = mock(AnimalPersistence.class);
-        ArrayList<Animal> lista = new ArrayList<>();
+        List<Animal> lista = new ArrayList<>();
         Animal animal = new Animal(1L, "5151", "cao", "shi-tzu", "preto", LocalDate.parse("2009-11-30"), "Mockito", 1L);
 
         lista.add(animal);
@@ -174,7 +174,7 @@ public class AnimalServiceTest {
     }
 
     private List<Animal> animais(){
-        ArrayList<Animal> animal = new ArrayList<>();
+        List<Animal> animal = new ArrayList<>();
 
         animal.add(new Animal(1L, "NU-434", "Gato", "Angora", "Branca", LocalDate.parse("2015-08-04"), "Leão", 43L));
         animal.add(new Animal(2L, "NU-435", "Cachorro", "Shi-Tzu", "Preta", LocalDate.parse("2015-08-04"), "Gabriell", 23L));
@@ -184,7 +184,7 @@ public class AnimalServiceTest {
     }
 
     private List<AnimalDto> animaisDto(){
-        ArrayList<AnimalDto> animalDto = new ArrayList<>();
+        List<AnimalDto> animalDto = new ArrayList<>();
 
         Proprietario proprietario = new Proprietario();
         proprietario.setId(2L);
@@ -201,7 +201,7 @@ public class AnimalServiceTest {
     }
 
     private List<ConsultaDto> consultasDto(){
-        ArrayList<ConsultaDto> consultasDto = new ArrayList<>();
+        List<ConsultaDto> consultasDto = new ArrayList<>();
 
         Medico medico = new Medico();
         medico.setId(1L);

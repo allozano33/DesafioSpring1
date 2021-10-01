@@ -26,7 +26,7 @@ public class ConsultaServiceTest {
     @Test
     void deveCadastrarConsulta() throws IOException {
         ConsultaPersistence mock = Mockito.mock(ConsultaPersistence.class);
-        ArrayList<Consulta> lista = new ArrayList<>();
+        List<Consulta> lista = new ArrayList<>();
         Consulta consulta = new Consulta("3140", LocalDateTime.parse("2015-08-04T10:11:30"), "Pata Quebrada", "Cirurgia", "Repouso", 2L, 2L);
 
         when(mock.cadastra(Mockito.any(Consulta.class))).thenReturn(consulta);
@@ -40,7 +40,7 @@ public class ConsultaServiceTest {
     @Test
     void naoDeveCadastrarQuandoCodigoExistente() throws IOException {
         ConsultaPersistence mock = Mockito.mock(ConsultaPersistence.class);
-        ArrayList<Consulta> lista = new ArrayList<>();
+        List<Consulta> lista = new ArrayList<>();
         Consulta consulta = new Consulta("3140", LocalDateTime.parse("2015-08-04T10:11:30"), "Pata Quebrada", "Cirurgia", "Repouso", 2L, 2L);
 
         lista.add(consulta);

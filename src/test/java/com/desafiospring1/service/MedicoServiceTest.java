@@ -26,7 +26,7 @@ public class MedicoServiceTest {
     @Test
     void deveCadastrarMedico() throws IOException, ParseException {
         MedicoPersistence mock = Mockito.mock(MedicoPersistence.class);
-        ArrayList<Medico> lista = new ArrayList<>();
+        List<Medico> lista = new ArrayList<>();
         Medico medico = new Medico("7771", "ze", "alves", "crmv-444441", "equinos");
 
         Mockito.when(mock.cadastra(Mockito.any(Medico.class))).thenReturn(medico);
@@ -40,7 +40,7 @@ public class MedicoServiceTest {
     @Test
     void naoDeveCadastrarQuandoNumRegistroExistente() throws IOException, ParseException {
         MedicoPersistence mock = Mockito.mock(MedicoPersistence.class);
-        ArrayList<Medico> lista = new ArrayList<>();
+        List<Medico> lista = new ArrayList<>();
         Medico medico = new Medico("7771", "ze", "alves", "crmv-444441", "equinos");
 
         lista.add(medico);
@@ -151,7 +151,7 @@ public class MedicoServiceTest {
     }
 
     private List<ConsultaDto> consultasDto(){
-        ArrayList<ConsultaDto> consultasDto = new ArrayList<>();
+        List<ConsultaDto> consultasDto = new ArrayList<>();
 
         Medico medico = new Medico();
         medico.setId(1L);
