@@ -1,13 +1,20 @@
 package com.desafiospring1.service;
 
+import com.desafiospring1.dto.AnimalDto;
+import com.desafiospring1.dto.ConsultaDto;
 import com.desafiospring1.entity.Medico;
+import com.desafiospring1.entity.Proprietario;
+import com.desafiospring1.persistence.ConsultaPersistence;
 import com.desafiospring1.persistence.MedicoPersistence;
+import com.desafiospring1.persistence.ProprietarioPersistence;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,14 +114,25 @@ public class MedicoServiceTest {
     //naoDeveDeletarMedico
     @Test
     void naoDeveDeletarMedico() throws IOException, ParseException {
-        MedicoPersistence mock = Mockito.mock(MedicoPersistence.class);
-        ArrayList<Medico> lista = new ArrayList<>();
-        Medico medico = new Medico(1L, "7771", "ze", "alves", "crmv-444441", "equinos");
+        MedicoPersistence mockMedicoPersistence = Mockito.mock(MedicoPersistence.class);
+        ConsultaPersistence mockConsultaPersistence = Mockito.mock(ConsultaPersistence.class);
+        List<Medico> medicos = new ArrayList<>();
 
-        lista.add(medico);
-        Mockito.when(mock.deletaMedico(1L)).thenReturn(lista);
+        Medico medico = new Medico();
+        medico.setId(1L);
+        medico.setCpf("123.254.256-77");
+        medico.setNome("Joao");
+        medico.setSobrenome("Silva");
+        medico.setNumeroDeRegistro("CRMV-1234");
+        medico.setEspecialidade("Clinico");
 
-        MedicoService medicoService = new MedicoService(mock);
+        medicos.add(medico);
+
+        when(mockMedicoPersistence.deletaMedico(1L)).thenReturn(medicos);
+
+        MedicoService medicoService = new MedicoService(mockMedicoPersistence,mockConsultaPersistence);
+        Mockito.when(mockConsultaPersistence.listagemCompleta()).thenReturn(consultasDto());
+
         RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
             medicoService.deletaMedico(1L);
         });
@@ -122,8 +140,8 @@ public class MedicoServiceTest {
         String expectedMessage = "Médico em consulta, ele não pode ser deletado!";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
-
     }
+
 
     @Test
     void deveAtualizarMedico() throws ParseException, IOException {
@@ -140,5 +158,43 @@ public class MedicoServiceTest {
 //        //Verifica se o método da dependência foi chamado (incluindo o parâmetro exato)
 //        Mockito.verify(mock).atualizaMedico(medico);
 //        assertNotNull();
+    }
+
+    private List<ConsultaDto> consultasDto(){
+        ArrayList<ConsultaDto> consultasDto = new ArrayList<>();
+
+        Medico medico = new Medico();
+        medico.setId(1L);
+        medico.setCpf("123.254.256-77");
+        medico.setNome("Joao");
+        medico.setSobrenome("Silva");
+        medico.setNumeroDeRegistro("CRMV-1234");
+        medico.setEspecialidade("Clinico");
+
+        Proprietario proprietario = new Proprietario();
+        proprietario.setId(2L);
+        proprietario.setCpf("145.258.658-99");
+        proprietario.setNome("Maria");
+        proprietario.setSobrenome("Alves");
+        proprietario.setEndereco("Rua teste 123");
+        proprietario.setTelefoneContato("159357852");
+        proprietario.setDataDeNascimento(LocalDate.parse("1987-08-04"));
+
+        AnimalDto animal = new AnimalDto();
+        animal.setId(2L);
+        animal.setNome("Mera");
+        animal.setNumeroPaciente("Nu_12587");
+        animal.setEspecie("Cao");
+        animal.setRaca("Shi-tzu");
+        animal.setCor("Branca");
+        animal.setDataDeNascimento(LocalDate.parse("1987-08-04"));
+        animal.setProprietario(proprietario);
+
+
+        consultasDto.add(new ConsultaDto(1L, "Cons-123", LocalDateTime.parse("2021-08-04T10:11:30"), "Teste", "teste", "tratamento", medico, animal));
+        consultasDto.add(new ConsultaDto(2L, "Cons-567", LocalDateTime.parse("2021-07-25T10:11:30"), "Teste", "teste", "tratamento", medico, animal));
+        consultasDto.add(new ConsultaDto(3L, "Cons-890", LocalDateTime.parse("2021-09-22T10:11:30"), "Teste", "teste", "tratamento", medico, animal));
+
+        return consultasDto;
     }
 }

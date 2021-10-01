@@ -13,13 +13,17 @@ import java.util.List;
 public class MedicoService {
 
     private MedicoPersistence persistence;
+    private ConsultaPersistence persistenceConsulta;
 
-    public MedicoService() {
-
-    }
+    public MedicoService() {}
 
     public MedicoService(MedicoPersistence persistence) {
         this.persistence = persistence;
+    }
+
+    public MedicoService(MedicoPersistence persistence, ConsultaPersistence persistenceConsulta) {
+        this.persistence = persistence;
+        this.persistenceConsulta = persistenceConsulta;
     }
 
     private boolean codigoNaoUtilizado(String numeroRegistro) {
