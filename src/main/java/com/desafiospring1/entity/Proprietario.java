@@ -6,14 +6,14 @@ import java.text.ParseException;
 import java.time.LocalDate;
 
 @Data
-public class Proprietario extends Pessoa{
+public class Proprietario extends Pessoa {
 
     private Long id;
     private LocalDate dataDeNascimento;
     private String endereco;
     private String telefoneContato;
 
-    public Proprietario(){
+    public Proprietario() {
 
     }
 
@@ -31,6 +31,7 @@ public class Proprietario extends Pessoa{
         this.endereco = endereco;
         this.telefoneContato = telefoneContato;
     }
+
 
     @Override
     public String toString() {

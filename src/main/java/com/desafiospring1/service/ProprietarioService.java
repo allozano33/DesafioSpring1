@@ -11,14 +11,19 @@ import java.util.List;
 
 @Service
 public class ProprietarioService {
+
     private ProprietarioPersistence persistence;
+    private ConsultaPersistence persistenceConsulta;
 
-    public ProprietarioService() {
-
-    }
+    public ProprietarioService() {}
 
     public ProprietarioService(ProprietarioPersistence persistence) {
         this.persistence = persistence;
+    }
+
+    public ProprietarioService(ProprietarioPersistence persistence, ConsultaPersistence persistenceConsulta) {
+        this.persistence = persistence;
+        this.persistenceConsulta = persistenceConsulta;
     }
 
     private boolean codigoNaoUtilizado(String cpf) {
@@ -29,10 +34,9 @@ public class ProprietarioService {
         }
         return true;
     }
-
     public Proprietario cadastrar(Proprietario proprietario) throws IOException {
         if (codigoNaoUtilizado(proprietario.getCpf())) {
-            proprietario.setId(persistence.listagem().size()+1L);
+            proprietario.setId(persistence.listagem().size() + 1L);
             return persistence.cadastra(proprietario);
         } else {
             throw new RuntimeException("Código já utilizado");
@@ -43,13 +47,10 @@ public class ProprietarioService {
         return persistence.listagem();
     }
 
-    public Proprietario buscaProprietarioPorId(Long id) {
-        return persistence.buscaProprietarioPorId(id);
-    }
+    public Proprietario buscaProprietarioPorId(Long id) {return persistence.buscaProprietarioPorId(id);}
 
     private boolean proprietarioEmConsulta(Long id) {
-        ConsultaPersistence consultaPersistence = new ConsultaPersistence();
-        for (ConsultaDto consultaDto : consultaPersistence.listagemCompleta()) {
+        for (ConsultaDto consultaDto : persistenceConsulta.listagemCompleta()) {
             if (consultaDto.getAnimalDto().getProprietario().getId().equals(id)) {
                 return true;
             }
@@ -58,12 +59,11 @@ public class ProprietarioService {
     }
 
     public List<Proprietario> deletaProprietario(Long id) throws IOException {
-        if(!proprietarioEmConsulta(id)) {
+        if (!proprietarioEmConsulta(id)) {
             return persistence.deletaProprietario(id);
         } else {
             throw new RuntimeException("Proprietario em consulta, ele não pode ser deletado!");
         }
-
     }
 
     public Proprietario atualizaProprietario(Proprietario proprietario) throws IOException {
