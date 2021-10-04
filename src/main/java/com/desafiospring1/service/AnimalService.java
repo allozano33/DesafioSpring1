@@ -5,6 +5,7 @@ import com.desafiospring1.dto.ConsultaDto;
 import com.desafiospring1.entity.Animal;
 import com.desafiospring1.persistence.AnimalPersistence;
 import com.desafiospring1.persistence.ConsultaPersistence;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -13,7 +14,10 @@ import java.util.List;
 @Service
 public class AnimalService {
 
-    private AnimalPersistence persistence = new AnimalPersistence();
+    @Autowired
+    private AnimalPersistence persistence;
+
+    @Autowired
     private ConsultaPersistence persistenceConsulta;
 
     public AnimalService() {

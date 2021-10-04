@@ -3,11 +3,13 @@ package com.desafiospring1.persistence;
 import com.desafiospring1.dto.ConsultaDto;
 import com.desafiospring1.entity.Consulta;
 import com.desafiospring1.util.ConsultaJson;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class ConsultaPersistence {
 
     private ConsultaJson consultaJson = new ConsultaJson();

@@ -5,6 +5,7 @@ import com.desafiospring1.entity.Medico;
 
 import com.desafiospring1.persistence.ConsultaPersistence;
 import com.desafiospring1.persistence.MedicoPersistence;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -13,7 +14,10 @@ import java.util.List;
 @Service
 public class MedicoService {
 
-    private MedicoPersistence persistence =  new MedicoPersistence();
+    @Autowired
+    private MedicoPersistence persistence;
+
+    @Autowired
     private ConsultaPersistence persistenceConsulta;
 
     public MedicoService() {}

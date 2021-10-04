@@ -4,6 +4,7 @@ import com.desafiospring1.dto.ConsultaDto;
 import com.desafiospring1.entity.Proprietario;
 import com.desafiospring1.persistence.ConsultaPersistence;
 import com.desafiospring1.persistence.ProprietarioPersistence;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -12,7 +13,10 @@ import java.util.List;
 @Service
 public class ProprietarioService {
 
-    private ProprietarioPersistence persistence = new ProprietarioPersistence();
+    @Autowired
+    private ProprietarioPersistence persistence;
+
+    @Autowired
     private ConsultaPersistence persistenceConsulta;
 
     public ProprietarioService() {}

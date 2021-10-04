@@ -4,6 +4,7 @@ import com.desafiospring1.dto.ConsultaDto;
 import com.desafiospring1.dto.ConsultaTotalMedicoDto;
 import com.desafiospring1.entity.Consulta;
 import com.desafiospring1.persistence.ConsultaPersistence;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -15,7 +16,8 @@ import java.util.stream.Collectors;
 @Service
 public class ConsultaService {
 
-    private ConsultaPersistence persistence = new ConsultaPersistence();
+    @Autowired
+    private ConsultaPersistence persistence;
 
     public ConsultaService() {}
 

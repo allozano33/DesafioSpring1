@@ -2,11 +2,13 @@ package com.desafiospring1.persistence;
 
 import com.desafiospring1.entity.Proprietario;
 import com.desafiospring1.util.ProprietarioJson;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class ProprietarioPersistence {
 
     private ProprietarioJson proprietarioJson = new ProprietarioJson();

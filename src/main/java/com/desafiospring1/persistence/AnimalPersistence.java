@@ -3,11 +3,13 @@ package com.desafiospring1.persistence;
 import com.desafiospring1.dto.AnimalDto;
 import com.desafiospring1.entity.Animal;
 import com.desafiospring1.util.AnimalJson;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class AnimalPersistence {
 
     private AnimalJson animalJson = new AnimalJson();
