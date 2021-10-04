@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class ProprietarioService {
 
-    private ProprietarioPersistence persistence;
+    private ProprietarioPersistence persistence = new ProprietarioPersistence();
     private ConsultaPersistence persistenceConsulta;
 
     public ProprietarioService() {}

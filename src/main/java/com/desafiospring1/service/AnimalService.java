@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class AnimalService {
 
-    private AnimalPersistence persistence;
+    private AnimalPersistence persistence = new AnimalPersistence();
     private ConsultaPersistence persistenceConsulta;
 
     public AnimalService() {

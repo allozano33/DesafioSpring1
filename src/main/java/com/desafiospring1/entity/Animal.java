@@ -20,16 +20,6 @@ public class Animal {
 
     }
 
-    public Animal(String numeroPaciente, String especie, String raca, String cor, LocalDate dataDeNascimento, String nome, Long idProprietario) {
-        this.numeroPaciente = numeroPaciente;
-        this.especie = especie;
-        this.raca = raca;
-        this.cor = cor;
-        this.dataDeNascimento = dataDeNascimento;
-        this.nome = nome;
-        this.idProprietario = idProprietario;
-    }
-
     public Animal (Long id, String numeroPaciente, String especie, String raca, String cor, LocalDate dataDeNascimento, String nome, Long idProprietario) {
         this.id = id;
         this.numeroPaciente = numeroPaciente;

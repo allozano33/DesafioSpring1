@@ -1,0 +1,1 @@
+{"Animal":[{ "id":1, "numeroPaciente":"NP987", "especie":"Cachorro", "raca":"Shitsu", "cor":"Branco e preto", "dataDeNascimento":"2020-07-10", "nome":"Mera", "idProprietario":1},{ "id":2, "numeroPaciente":"NP123", "especie":"Cachorro", "raca":"Shitsu", "cor":"Branco e preto", "dataDeNascimento":"2020-07-10", "nome":"Mera", "idProprietario":1}]}

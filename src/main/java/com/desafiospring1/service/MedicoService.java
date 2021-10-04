@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class MedicoService {
 
-    private MedicoPersistence persistence;
+    private MedicoPersistence persistence =  new MedicoPersistence();
     private ConsultaPersistence persistenceConsulta;
 
     public MedicoService() {}

@@ -1,15 +1,12 @@
 package com.desafiospring1.persistence;
 
 import com.desafiospring1.dto.ConsultaDto;
-import com.desafiospring1.dto.ConsultaTotalMedicoDto;
 import com.desafiospring1.entity.Consulta;
 import com.desafiospring1.util.ConsultaJson;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ConsultaPersistence {
 

@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Service
 public class ConsultaService {
 
-    private ConsultaPersistence persistence;
+    private ConsultaPersistence persistence = new ConsultaPersistence();
 
     public ConsultaService() {}
 
