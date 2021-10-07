@@ -21,10 +21,20 @@ public class ConsultaService {
 
     public ConsultaService() {}
 
+    /**
+     *
+     * @param persistence - é esperado um parâmetro do tipo ConsultaPersistence para injeção de dependêcia
+     */
     public ConsultaService(ConsultaPersistence persistence) {
         this.persistence = persistence;
     }
 
+    /**
+     *
+     * @param codigo - é esperado um código de uma consulta
+     * @return Verificação de duplicidade de código
+     * @author Grupo 5 - Test Ana Carolina e Wagner
+     */
     private boolean codigoNaoUtilizado(String codigo) {
         for (Consulta consulta : persistence.listagem()) {
             if (consulta.getCodigo().equals(codigo)) {
@@ -34,6 +44,13 @@ public class ConsultaService {
         return true;
     }
 
+    /**
+     *
+     * @param consulta  - é esperado um objeto do tipo Consulta
+     * @return Consulta cadastrada
+     * @throws IOException - Lança exceção caso ocorra erro no cadastro de consulta
+     * @author Grupo 5 - Test Ana Carolina e Wagner
+     */
     public Consulta cadastrar(Consulta consulta) throws IOException {
         if (codigoNaoUtilizado(consulta.getCodigo())) {
             consulta.setId(persistence.listagem().size() + 1L);
@@ -43,10 +60,21 @@ public class ConsultaService {
         }
     }
 
+    /**
+     *
+     * @return List de Consultas do tipo Consulta
+     * @author Grupo 5 - Test Ana Carolina e Wagner
+     */
     public List<Consulta> listar() {
         return persistence.listagem();
     }
 
+    /**
+     *
+     * @param id - é esperado um Id (LONG) de um Animal
+     * @return List de Consultas do tipo ConsultaDTO do id do animal passado como parâmetro em ordem decrescente por DATA da consulta
+     * @author Grupo 5 - Test Ana Carolina e Wagner
+     */
     public List<ConsultaDto> listarAnimalPorData(Long id) {
         List<ConsultaDto> novaListaConsultas = persistence.listagemCompleta();
 
@@ -58,6 +86,11 @@ public class ConsultaService {
         return consultas;
     }
 
+    /**
+     *
+     * @return List de Consultas do tipo ConsultaDTO em ordem crecente por nome do proprietário
+     * @author Grupo 5 - Test Ana Carolina e Wagner
+     */
     public List<ConsultaDto> listarPorNomeProprietario() {
         List<ConsultaDto> novaListaConsultas = persistence.listagemCompleta();
 
@@ -67,6 +100,11 @@ public class ConsultaService {
         return consultas;
     }
 
+    /**
+     *
+     * @return List com o Total de consultas do tipo ConsultaTotalMedicoDto para cada médico cadastrado
+     * @author Grupo 5 - Test Ana Carolina e Wagner
+     */
     public List<ConsultaTotalMedicoDto> listarTotalDeConsultaPorMedico() {
         List<ConsultaDto> totalConsultas = persistence.listagemCompleta();
         List<ConsultaTotalMedicoDto> consultaTotalMedico = new ArrayList<>();
@@ -94,6 +132,12 @@ public class ConsultaService {
         return consultaTotalMedico;
     }
 
+    /**
+     *
+     * @param data é esperado um data na qual será buscada as consultas do dia
+     * @return List de Consultas do tipo ConsultaDto da data passada como parâmetro
+     * @author Grupo 5 - Test Ana Carolina e Wagner
+     */
     public List<ConsultaDto> listarConsultasDoDia(String data) {
         List<ConsultaDto> novaListaConsultas = persistence.listagemCompleta();
 
@@ -113,10 +157,21 @@ public class ConsultaService {
         return consultas;
     }
 
+    /**
+     *
+     * @return List de consultas do tipo ConsultaDto
+     * @author Grupo 5 - Test Ana Carolina e Wagner
+     */
     public List<ConsultaDto> listarDadosCompletos() {
         return persistence.listagemCompleta();
     }
 
+    /**
+     *
+     * @param id - é esperado um Id (LONG) de uma Consulta
+     * @return Consulta para o id passado como parâmetro
+     * @author Grupo 5 - Test Ana Carolina e Wagner
+     */
     public Consulta buscaConsultaPorId(Long id) {
         List<Consulta> consultas = persistence.buscaConsultaPorId();
 
@@ -128,6 +183,13 @@ public class ConsultaService {
         return null;
     }
 
+    /**
+     *
+     * @param consulta é esperado um objeto do tipo Consulta
+     * @return Consulta os seus dados alterados
+     * @throws IOException - Lança exceção caso ocorra erro ao atualizar consulta
+     * @author Grupo 5 - Test Ana Carolina e Wagner
+     */
     public Consulta atualizaConsulta(Consulta consulta) throws IOException {
         return persistence.atualizaConsulta(consulta);
     }
