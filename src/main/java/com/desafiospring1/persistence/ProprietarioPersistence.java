@@ -15,10 +15,9 @@ public class ProprietarioPersistence {
     private static List<Proprietario> listaProprietario = new ArrayList<>();
 
     /**
-     *
      * @param proprietario esperado tipo Proprietario
      * @return Proprietario em arquivo Json
-     * @throws IOException
+     * @throws IOException lança uma exceção caso ocorra um erro no cadastro do proprietario
      * @author Grupo 5 - Rafael
      */
     public Proprietario cadastra(Proprietario proprietario) throws IOException {
@@ -30,16 +29,14 @@ public class ProprietarioPersistence {
     }
 
     /**
-     *
      * @return List de proprietarios em arquivo Json
-     @author Grupo 5 - Rafael
+     * @author Grupo 5 - Rafael
      */
     public List<Proprietario> listagem() {
         return proprietarioJson.listar();
     }
 
     /**
-     *
      * @param id é esperado um objeto do tipo id(Long) de um proprietario
      * @return List de Proprietarios em arquivo Json através do parametro id
      * @author Grupo 5 - Rafael
@@ -54,16 +51,15 @@ public class ProprietarioPersistence {
     }
 
     /**
-     *
      * @param id é esperado um objeto do tipo id(Long) de um proprietario
      * @return List de proprietario atualizada após a remoção
-     * @throws IOException
+     * @throws IOException lança uma exceção caso ocorra erro na remoção do proprietario
      * @author Grupo 5 - Rafael
      */
     public List<Proprietario> deletaProprietario(Long id) throws IOException {
         listaProprietario = proprietarioJson.listar();
-        for(int i=0; i<listaProprietario.size();i++){
-            if(listaProprietario.get(i).getId().equals(id)){
+        for (int i = 0; i < listaProprietario.size(); i++) {
+            if (listaProprietario.get(i).getId().equals(id)) {
                 listaProprietario.remove(i);
             }
         }
@@ -72,10 +68,9 @@ public class ProprietarioPersistence {
     }
 
     /**
-     *
      * @param proprietario é esperado um objeto do tipo proprietario
-     * @return List de proprietarios atualizada após uma alteração
-     * @throws IOException
+     * @return List de proprietarios atualizada após uma alteração do proprietario
+     * @throws IOException lança um erro caso ocorra um erro na alteração
      * @author Grupo 5 - Rafael
      */
     public Proprietario atualizaProprietario(Proprietario proprietario) throws IOException {
