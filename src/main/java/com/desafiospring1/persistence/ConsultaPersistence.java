@@ -20,6 +20,7 @@ public class ConsultaPersistence {
      * @param consulta - é esperado do tipo Consulta
      * @return Consulta inserida no arquivo json
      * @throws IOException - Lança exceção caso ocorra erro no cadastro de consulta
+     * @author Grupo 5 - Testers Ana Carolina e Wagner
      */
     public Consulta cadastra(Consulta consulta) throws IOException {
         consulta.setId(consultaJson.listar().size() + 1L);
@@ -32,7 +33,7 @@ public class ConsultaPersistence {
     /**
      *
      * @return List de consultas gravadas no arquivo json
-     * @author Grupo 5 - Test Ana Carolina e Wagner
+     * @author Grupo 5 - Testers Ana Carolina e Wagner
      */
     public List<Consulta> listagem() {
         return consultaJson.listar();
@@ -41,7 +42,7 @@ public class ConsultaPersistence {
     /**
      *
      * @return List de consultas do tipo ConsultaDto com todos os dados de Proprietário, Médico e Animal
-     * @author Grupo 5 - Test Ana Carolina e Wagner
+     * @author Grupo 5 - Testers Ana Carolina e Wagner
      */
     public List<ConsultaDto> listagemCompleta() {
         return consultaJson.listarDadosCompletos();
@@ -50,7 +51,7 @@ public class ConsultaPersistence {
     /**
      *
      * @return List de consultas
-     * @author Grupo 5 - Test Ana Carolina e Wagner
+     * @author Grupo 5 - Testers Ana Carolina e Wagner
      */
     public List<Consulta> buscaConsultaPorId() {
         return consultaJson.listar();
@@ -60,7 +61,7 @@ public class ConsultaPersistence {
      *
      * @param consulta - é esperado um objeto do tipo Consulta
      * @return Uma consulta atualizada
-     * @author Grupo 5 - Test Ana Carolina e Wagner
+     * @author Grupo 5 - Testers Ana Carolina e Wagner
      * @throws IOException - Lança exceção caso ocorra erro ao atualizar consulta
      */
     public Consulta atualizaConsulta(Consulta consulta) throws IOException {
