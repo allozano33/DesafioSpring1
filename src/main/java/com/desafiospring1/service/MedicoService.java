@@ -57,7 +57,7 @@ public class MedicoService {
     /**
      * @param medico - é esperado um objeto do tipo médico
      * @return - retorna médico cadastrado na lista
-     * @throws IOException - lança exceçao "Código já utilizado" caso seja um cadastro em duplicidade
+     * @throws IOException - lança exceçao caso ocorra erro no cadastro do médico
      * @author Grupo 5 - Tester Wesley
      */
     public Medico cadastrar(Medico medico) throws IOException {
