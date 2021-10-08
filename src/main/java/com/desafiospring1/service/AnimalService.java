@@ -44,7 +44,7 @@ public class AnimalService {
     /**
      * @param numeroPaciente - é esperado um código de um Animal
      * @return Verificação de duplicidade de código
-     * @author Grupo 5 - Test Alessandro
+     * @author Grupo 5 - Tester Alessandro
      */
     private boolean codigoNaoUtilizado (String numeroPaciente) {
         for (Animal animal : persistence.listagem()) {
@@ -60,7 +60,7 @@ public class AnimalService {
      * @param animal  - é esperado um objeto do tipo Animal
      * @return Animal cadastrada
      * @throws IOException - Lança exceção caso ocorra erro no cadastro de animal
-     * @author Grupo 5 - Test Alessandro
+     * @author Grupo 5 - Tester Alessandro
      */
     public Animal cadastrar (Animal animal) throws IOException {
         if (codigoNaoUtilizado(animal.getNumeroPaciente())) {
@@ -73,7 +73,7 @@ public class AnimalService {
 
     /**
      * @return List de Animais do tipo Animal
-     * @author Grupo 5 - Test Alessandro
+     * @author Grupo 5 - Tester Alessandro
      */
     public List<Animal> listar ( ) {
         return persistence.listagem();
@@ -81,7 +81,7 @@ public class AnimalService {
 
     /**
      *@return list de animais do tipo AnimalDto
-     * @author Grupo 5 - Test Alessandro
+     * @author Grupo 5 - Tester Alessandro
      */
     public List<AnimalDto> listarDadosCompletos ( ) {
         return persistence.listagemCompleta();
@@ -91,7 +91,7 @@ public class AnimalService {
      *
      * @param id - é esperado um Id (LONG) de um Animal
      * @return List de Consultas do tipo ConsultaDTO do id do animal passado como parâmetro em ordem decrescente por DATA da consulta
-     * @author Grupo 5 - Test Alessandro
+     * @author Grupo 5 - Tester Alessandro
      */
     public Animal buscaAnimalPorId (Long id) {
         List<Animal> animais = persistence.listagem();
@@ -107,7 +107,7 @@ public class AnimalService {
     /**
      * @param id - é esperado um Id (LONG) de um Animal
      * @return List de Consultas do tipo ConsultaDTO do id do animal passado como parâmetro em consulta por lista completa
-     * @author Grupo 5 - Test Alessandro
+     * @author Grupo 5 - Tester Alessandro
      */
     private boolean animalEmConsulta (Long id) {
         for (ConsultaDto consultaDto : persistenceConsulta.listagemCompleta()) {
@@ -122,7 +122,7 @@ public class AnimalService {
      * @param id é esperado um objeto do tipo Animal
      * @return Animal  os seus dados alterados
      * @throws IOException - Lança exceção caso ocorra erro ao deletar animal que ja tenha tido uma consulta
-     * @author Grupo 5 - Test Alessandro
+     * @author Grupo 5 - Tester Alessandro
      */
     public List<Animal> deletaAnimal (Long id) throws IOException {
         if (!animalEmConsulta(id)) {
@@ -137,7 +137,7 @@ public class AnimalService {
      * @param animalDto é esperado um objeto do tipo AnimalDto
      * @return Animal com os seus dados atualizados
      * @throws IOException Lança exceção caso ocorra erro ao atualizar animal
-     *  @author Grupo 5 - Test Alessandro
+     *  @author Grupo 5 - Tester Alessandro
      */
     public Animal atualizaAnimal (Animal animalDto) throws IOException {
         return persistence.atualizaAnimal(animalDto);

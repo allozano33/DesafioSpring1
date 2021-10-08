@@ -18,8 +18,8 @@ public class AnimalPersistence {
     /**
      *
      * @param animal é esperado um objeto do tipo animal
-     * @return - retorna animal cadadtrado no arquivo animal.json
-     * @throws IOException - lanca uma excecao caso ocorra erro no cadastro de animal
+     * @return - retorna animal cadastrado no arquivo animal.json
+     * @throws IOException - lança uma exceção caso ocorra erro no cadastro de animal
      * @author Grupo 5 - Tester Alessandro
      */
     public Animal cadastra(Animal animal) throws IOException {
@@ -41,7 +41,7 @@ public class AnimalPersistence {
 
     /**
      *
-     * @return - lista de animais do tipo AnimalDto com todos os dados de proprietario
+     * @return - lista de animais do tipo AnimalDto com todos os dados de proprietário
      * @author Grupo 5 - Tester Alessandro
      */
     public List<AnimalDto> listagemCompleta() {
@@ -51,8 +51,8 @@ public class AnimalPersistence {
     /**
      *
      * @param id - é esperado parametro id do animal
-     * @return - retorna a lista de animal apos a delecao do arquivo animal.json
-     * @throws IOException - lanca exececao caso ocorra erro na delecao dos animais
+     * @return - retorna a lista de animal apos a deleção do arquivo animal.json
+     * @throws IOException - lanca execeção caso ocorra erro na deleçào dos animais
      * @author Grupo 5 - Tester Alessandro
      */
     public List<Animal> deletaAnimal(Long id) throws IOException {
@@ -69,8 +69,8 @@ public class AnimalPersistence {
     /**
      *
      * @param animal - é esperado um objeto do tipo animal
-     * @return - retorna o animal apos a atualizacao do arquivo animal
-     * @throws IOException - lanca exececao caso ocorra na atualizacao de animal
+     * @return - retorna o animal após a atualização do arquivo animal
+     * @throws IOException - lança execeção caso ocorra na atualização de animal
      * @author Grupo 5 - Tester Alessandro
      */
     public Animal atualizaAnimal(Animal animal) throws IOException {
