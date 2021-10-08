@@ -18,7 +18,7 @@ public class ProprietarioPersistence {
      * @param proprietario esperado tipo Proprietario
      * @return Proprietario em arquivo Json
      * @throws IOException lança uma exceção caso ocorra um erro no cadastro do proprietario
-     * @author Grupo 5 - Rafael
+     * @author Grupo 5 - Tester Rafael
      */
     public Proprietario cadastra(Proprietario proprietario) throws IOException {
         proprietario.setId(proprietarioJson.listar().size() + 1L);
@@ -30,7 +30,7 @@ public class ProprietarioPersistence {
 
     /**
      * @return List de proprietarios em arquivo Json
-     * @author Grupo 5 - Rafael
+     * @author Grupo 5 - Tester Rafael
      */
     public List<Proprietario> listagem() {
         return proprietarioJson.listar();
@@ -39,7 +39,7 @@ public class ProprietarioPersistence {
     /**
      * @param id é esperado um objeto do tipo id(Long) de um proprietario
      * @return Proprietario em arquivo Json através do parametro id
-     * @author Grupo 5 - Rafael
+     * @author Grupo 5 - Tester Rafael
      */
     public Proprietario buscaProprietarioPorId(Long id) {
         for (Proprietario proprietario : proprietarioJson.listar()) {
@@ -54,7 +54,7 @@ public class ProprietarioPersistence {
      * @param id é esperado um objeto do tipo id(Long) de um proprietario
      * @return List de proprietario atualizada após a remoção
      * @throws IOException lança uma exceção caso ocorra erro na remoção do proprietario
-     * @author Grupo 5 - Rafael
+     * @author Grupo 5 - Tester Rafael
      */
     public List<Proprietario> deletaProprietario(Long id) throws IOException {
         listaProprietario = proprietarioJson.listar();
@@ -70,8 +70,8 @@ public class ProprietarioPersistence {
     /**
      * @param proprietario é esperado um objeto do tipo proprietario
      * @return proprietario após alteração
-     * @throws IOException lança um erro caso ocorra um erro na alteração
-     * @author Grupo 5 - Rafael
+     * @throws IOException lança um exceção caso ocorra um erro na alteração
+     * @author Grupo 5 - Tester Rafael
      */
     public Proprietario atualizaProprietario(Proprietario proprietario) throws IOException {
         listaProprietario = proprietarioJson.listar();
