@@ -69,7 +69,7 @@ public class ProprietarioPersistence {
 
     /**
      * @param proprietario é esperado um objeto do tipo proprietario
-     * @return List de proprietarios atualizada após uma alteração do proprietario
+     * @return proprietario após alteração
      * @throws IOException lança um erro caso ocorra um erro na alteração
      * @author Grupo 5 - Rafael
      */
