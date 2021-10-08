@@ -27,7 +27,7 @@ public class ProprietarioController {
     }
 
     @GetMapping("/listar")
-    public List<Proprietario> listaAnimal ( ) {
+    public List<Proprietario> listaAnimal () {
         return proprietarioService.listar();
     }
 

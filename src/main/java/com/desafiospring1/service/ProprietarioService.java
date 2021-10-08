@@ -20,6 +20,11 @@ public class ProprietarioService {
     private ConsultaPersistence persistenceConsulta;
 
     public ProprietarioService() {}
+    /**
+     *
+     * @param persistence injeção de dependência do tipo ProprietarioPersistence
+     * @author - Grupo 5 - Rafael
+     */
 
     public ProprietarioService(ProprietarioPersistence persistence) {
         this.persistence = persistence;
@@ -30,6 +35,12 @@ public class ProprietarioService {
         this.persistenceConsulta = persistenceConsulta;
     }
 
+    /**
+     *
+     * @param cpf é esperado um objeto do tipo cpf
+     * @return boolean
+     * @author - Grupo 5 - Rafael
+     */
     private boolean codigoNaoUtilizado(String cpf) {
         for (Proprietario proprietario : persistence.listagem()) {
             if (proprietario.getCpf().equals(cpf)) {
@@ -38,6 +49,14 @@ public class ProprietarioService {
         }
         return true;
     }
+
+    /**
+     *
+     * @param proprietario é esperado um objeto do tipo proprietario
+     * @return o proprietario cadastrado
+     * @throws IOException
+     * @author - Grupo 5 - Rafael
+     */
     public Proprietario cadastrar(Proprietario proprietario) throws IOException {
         if (codigoNaoUtilizado(proprietario.getCpf())) {
             proprietario.setId(persistence.listagem().size() + 1L);
@@ -47,12 +66,32 @@ public class ProprietarioService {
         }
     }
 
+    /**
+     *
+     * @return list de proprietarios do tipo proprietario
+     * @author - Grupo 5 - Rafael
+     */
     public List<Proprietario> listar() {
         return persistence.listagem();
     }
 
-    public Proprietario buscaProprietarioPorId(Long id) {return persistence.buscaProprietarioPorId(id);}
+    /**
+     *
+     * @param id é esperado um objeto do tipo id(Long) de um proprietario
+     * @return um prorpietario para o id passado como parametro
+     * @author - Grupo 5 - Rafael
+     */
+    public Proprietario buscaProprietarioPorId(Long id) {
+        return persistence.buscaProprietarioPorId(id);
+    }
 
+
+    /**
+     *
+     * @param id é esperado um objeto do tipo id(long) de um proprietario
+     * @return lista de proprietarios pelo id passado
+     * @author - Grupo 5 - Rafael
+     */
     private boolean proprietarioEmConsulta(Long id) {
         for (ConsultaDto consultaDto : persistenceConsulta.listagemCompleta()) {
             if (consultaDto.getAnimalDto().getProprietario().getId().equals(id)) {
@@ -62,6 +101,13 @@ public class ProprietarioService {
         return false;
     }
 
+    /**
+     *
+     * @param id é esperado um objeto do tipo id(Long) de um proprietario
+     * @return lista de proprietarios apos a remoção
+     * @throws IOException
+     * @author - Grupo 5 - Rafael
+     */
     public List<Proprietario> deletaProprietario(Long id) throws IOException {
         if (!proprietarioEmConsulta(id)) {
             return persistence.deletaProprietario(id);
@@ -70,6 +116,13 @@ public class ProprietarioService {
         }
     }
 
+    /**
+     *
+     * @param proprietario é esperado um objeto do tipo id(Long) de um proprietario
+     * @return Lista de Proprietarios atualizado
+     * @throws IOException
+     * @author - Grupo 5 - Rafael
+     */
     public Proprietario atualizaProprietario(Proprietario proprietario) throws IOException {
         return persistence.atualizaProprietario(proprietario);
     }
