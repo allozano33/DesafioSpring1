@@ -93,7 +93,7 @@ public class ProprietarioService {
     /**
      *
      * @param id é esperado um objeto do tipo id(long) de um proprietario
-     * @return lista de proprietarios pelo id passado
+     * @return boolean informando se proprietario esta em consulta
      * @author - Grupo 5 - Rafael
      */
     private boolean proprietarioEmConsulta(Long id) {
@@ -123,7 +123,7 @@ public class ProprietarioService {
     /**
      *
      * @param proprietario é esperado um objeto do tipo id(Long) de um proprietario
-     * @return Lista de Proprietarios atualizado
+     * @return Proprietario após alteração
      * @throws IOException lança um erro caso ocorra um erro na alteração do proprietario
      * @author - Grupo 5 - Rafael
      */
