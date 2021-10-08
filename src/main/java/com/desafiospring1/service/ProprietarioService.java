@@ -23,7 +23,7 @@ public class ProprietarioService {
     /**
      *
      * @param persistence injeção de dependência do tipo ProprietarioPersistence
-     * @author - Grupo 5 - Rafael
+     * @author - Grupo 5 - Tester Rafael
      */
     public ProprietarioService(ProprietarioPersistence persistence) {
         this.persistence = persistence;
@@ -32,7 +32,7 @@ public class ProprietarioService {
     /**
      * @param persistence é esperado a injeção de dependêcia do tipo ProprietarioPersistence
      * @param persistenceConsulta é esperado a injeção de dependência do tipo ConsultaPersistence
-     * @author Grupo 5 - Rafael
+     * @author Grupo 5 - Tester Rafael
      */
     public ProprietarioService(ProprietarioPersistence persistence, ConsultaPersistence persistenceConsulta) {
         this.persistence = persistence;
@@ -43,7 +43,7 @@ public class ProprietarioService {
      *
      * @param cpf é esperado um objeto do tipo cpf
      * @return boolean
-     * @author - Grupo 5 - Rafael
+     * @author - Grupo 5 - Tester Rafael
      */
     private boolean codigoNaoUtilizado(String cpf) {
         for (Proprietario proprietario : persistence.listagem()) {
@@ -58,8 +58,8 @@ public class ProprietarioService {
      *
      * @param proprietario é esperado um objeto do tipo proprietario
      * @return o proprietario cadastrado
-     * @throws IOException lança um erro caso ocorra um erro no cadastro do proprietario
-     * @author - Grupo 5 - Rafael
+     * @throws IOException lança uma exceção caso ocorra um erro no cadastro do proprietario
+     * @author - Grupo 5 - Tester Rafael
      */
     public Proprietario cadastrar(Proprietario proprietario) throws IOException {
         if (codigoNaoUtilizado(proprietario.getCpf())) {
@@ -73,7 +73,7 @@ public class ProprietarioService {
     /**
      *
      * @return list de proprietarios do tipo proprietario
-     * @author - Grupo 5 - Rafael
+     * @author - Grupo 5 - Tester Rafael
      */
     public List<Proprietario> listar() {
         return persistence.listagem();
@@ -83,7 +83,7 @@ public class ProprietarioService {
      *
      * @param id é esperado um objeto do tipo id(Long) de um proprietario
      * @return um proprietario para o id passado como parametro
-     * @author - Grupo 5 - Rafael
+     * @author - Grupo 5 - Tester Rafael
      */
     public Proprietario buscaProprietarioPorId(Long id) {
         return persistence.buscaProprietarioPorId(id);
@@ -94,7 +94,7 @@ public class ProprietarioService {
      *
      * @param id é esperado um objeto do tipo id(long) de um proprietario
      * @return boolean informando se proprietario esta em consulta
-     * @author - Grupo 5 - Rafael
+     * @author - Grupo 5 - Tester Rafael
      */
     private boolean proprietarioEmConsulta(Long id) {
         for (ConsultaDto consultaDto : persistenceConsulta.listagemCompleta()) {
@@ -109,8 +109,8 @@ public class ProprietarioService {
      *
      * @param id é esperado um objeto do tipo id(Long) de um proprietario
      * @return lista de proprietarios apos a remoção
-     * @throws IOException lança um erro caso ocorra um erro na remoção do proprietario
-     * @author - Grupo 5 - Rafael
+     * @throws IOException lança uma exceção caso ocorra um erro na remoção do proprietario
+     * @author - Grupo 5 - Tester Rafael
      */
     public List<Proprietario> deletaProprietario(Long id) throws IOException {
         if (!proprietarioEmConsulta(id)) {
@@ -124,8 +124,8 @@ public class ProprietarioService {
      *
      * @param proprietario é esperado um objeto do tipo id(Long) de um proprietario
      * @return Proprietario após alteração
-     * @throws IOException lança um erro caso ocorra um erro na alteração do proprietario
-     * @author - Grupo 5 - Rafael
+     * @throws IOException lança uma exceção caso ocorra um erro na alteração do proprietario
+     * @author - Grupo 5 - Tester Rafael
      */
     public Proprietario atualizaProprietario(Proprietario proprietario) throws IOException {
         return persistence.atualizaProprietario(proprietario);
