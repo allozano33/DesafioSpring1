@@ -25,11 +25,15 @@ public class ProprietarioService {
      * @param persistence injeção de dependência do tipo ProprietarioPersistence
      * @author - Grupo 5 - Rafael
      */
-
     public ProprietarioService(ProprietarioPersistence persistence) {
         this.persistence = persistence;
     }
 
+    /**
+     * @param persistence é esperado a injeção de dependêcia do tipo ProprietarioPersistence
+     * @param persistenceConsulta é esperado a injeção de dependência do tipo ConsultaPersistence
+     * @author Grupo 5 - Rafael
+     */
     public ProprietarioService(ProprietarioPersistence persistence, ConsultaPersistence persistenceConsulta) {
         this.persistence = persistence;
         this.persistenceConsulta = persistenceConsulta;
@@ -54,7 +58,7 @@ public class ProprietarioService {
      *
      * @param proprietario é esperado um objeto do tipo proprietario
      * @return o proprietario cadastrado
-     * @throws IOException
+     * @throws IOException lança um erro caso ocorra um erro no cadastro do proprietario
      * @author - Grupo 5 - Rafael
      */
     public Proprietario cadastrar(Proprietario proprietario) throws IOException {
@@ -78,7 +82,7 @@ public class ProprietarioService {
     /**
      *
      * @param id é esperado um objeto do tipo id(Long) de um proprietario
-     * @return um prorpietario para o id passado como parametro
+     * @return um proprietario para o id passado como parametro
      * @author - Grupo 5 - Rafael
      */
     public Proprietario buscaProprietarioPorId(Long id) {
@@ -105,7 +109,7 @@ public class ProprietarioService {
      *
      * @param id é esperado um objeto do tipo id(Long) de um proprietario
      * @return lista de proprietarios apos a remoção
-     * @throws IOException
+     * @throws IOException lança um erro caso ocorra um erro na remoção do proprietario
      * @author - Grupo 5 - Rafael
      */
     public List<Proprietario> deletaProprietario(Long id) throws IOException {
@@ -120,7 +124,7 @@ public class ProprietarioService {
      *
      * @param proprietario é esperado um objeto do tipo id(Long) de um proprietario
      * @return Lista de Proprietarios atualizado
-     * @throws IOException
+     * @throws IOException lança um erro caso ocorra um erro na alteração do proprietario
      * @author - Grupo 5 - Rafael
      */
     public Proprietario atualizaProprietario(Proprietario proprietario) throws IOException {

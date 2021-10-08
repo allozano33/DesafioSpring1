@@ -69,7 +69,7 @@ public class MedicoPersistence {
 
     /**
      * @param medico - é esperado um objeto do tipo médico
-     * @return - retorna a lista médico após a atualizaçao do arquivo medicoJson
+     * @return - retorna o médico após a atualizaçao do arquivo medicoJson
      * @throws IOException - lança exceçao caso ocorra erro na atualizaçao dos médicos
      * @author Grupo 5 - Tester Wesley
      */
