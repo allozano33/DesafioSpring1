@@ -15,6 +15,13 @@ public class AnimalPersistence {
     private AnimalJson animalJson = new AnimalJson();
     private static List<Animal> listaAnimais = new ArrayList<>();
 
+    /**
+     *
+     * @param animal é esperado um objeto do tipo animal
+     * @return - retorna animal cadadtrado no arquivo animal.json
+     * @throws IOException - lanca uma excecao caso ocorra erro no cadastro de animal
+     * @author Grupo 5 - Tester Alessandro
+     */
     public Animal cadastra(Animal animal) throws IOException {
         animal.setId(animalJson.listar().size() + 1L);
         List<Animal> novaListaAnimais = animalJson.listar();
@@ -23,14 +30,31 @@ public class AnimalPersistence {
         return animal;
     }
 
+    /**
+     *
+     * @return retona a lista de animais do arquivo animal.json
+     * @author Grupo 5 - Tester Alessandro
+     */
     public List<Animal> listagem() {
         return animalJson.listar();
     }
 
+    /**
+     *
+     * @return - lista de animais do tipo AnimalDto com todos os dados de proprietario
+     * @author Grupo 5 - Tester Alessandro
+     */
     public List<AnimalDto> listagemCompleta() {
         return animalJson.listarDadosCompletos();
     }
 
+    /**
+     *
+     * @param id - é esperado parametro id do animal
+     * @return - retorna a lista de animal apos a delecao do arquivo animal.json
+     * @throws IOException - lanca exececao caso ocorra erro na delecao dos animais
+     * @author Grupo 5 - Tester Alessandro
+     */
     public List<Animal> deletaAnimal(Long id) throws IOException {
         listaAnimais = animalJson.listar();
         for(int i=0; i<listaAnimais.size();i++){
@@ -42,6 +66,13 @@ public class AnimalPersistence {
         return animalJson.listar();
     }
 
+    /**
+     *
+     * @param animal - é esperado um objeto do tipo animal
+     * @return - retorna o animal apos a atualizacao do arquivo animal
+     * @throws IOException - lanca exececao caso ocorra na atualizacao de animal
+     * @author Grupo 5 - Tester Alessandro
+     */
     public Animal atualizaAnimal(Animal animal) throws IOException {
         listaAnimais = animalJson.listar();
         for (int i = 0; i < listaAnimais.size(); i++) {
