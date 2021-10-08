@@ -18,7 +18,7 @@ public class ConsultaPersistence {
     /**
      *
      * @param consulta - é esperado do tipo Consulta
-     * @return Consulta inserida no arquivo json
+     * @return Consulta cadastrada no arquivo consulta.json
      * @throws IOException - Lança exceção caso ocorra erro no cadastro de consulta
      * @author Grupo 5 - Testers Ana Carolina e Wagner
      */
@@ -32,7 +32,7 @@ public class ConsultaPersistence {
 
     /**
      *
-     * @return List de consultas gravadas no arquivo json
+     * @return List de consultas gravadas no arquivo consulta.json
      * @author Grupo 5 - Testers Ana Carolina e Wagner
      */
     public List<Consulta> listagem() {
@@ -41,7 +41,7 @@ public class ConsultaPersistence {
 
     /**
      *
-     * @return List de consultas do tipo ConsultaDto com todos os dados de Proprietário, Médico e Animal
+     * @return List de consultas do tipo ConsultaDto com todos os dados de Proprietário, Médico e Animal cadastrados no arquivo consulta.json
      * @author Grupo 5 - Testers Ana Carolina e Wagner
      */
     public List<ConsultaDto> listagemCompleta() {
@@ -50,7 +50,7 @@ public class ConsultaPersistence {
 
     /**
      *
-     * @return List de consultas
+     * @return List de consultas cadastradas no arquivo consulta.json
      * @author Grupo 5 - Testers Ana Carolina e Wagner
      */
     public List<Consulta> buscaConsultaPorId() {
@@ -62,7 +62,7 @@ public class ConsultaPersistence {
      * @param consulta - é esperado um objeto do tipo Consulta
      * @return Uma consulta atualizada
      * @author Grupo 5 - Testers Ana Carolina e Wagner
-     * @throws IOException - Lança exceção caso ocorra erro ao atualizar consulta
+     * @throws IOException - Lança exceção caso ocorra erro ao atualizar consulta no arquivo consulta.json
      */
     public Consulta atualizaConsulta(Consulta consulta) throws IOException {
         listaConsultas = consultaJson.listar();
