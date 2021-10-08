@@ -38,7 +38,7 @@ public class ProprietarioPersistence {
 
     /**
      * @param id é esperado um objeto do tipo id(Long) de um proprietario
-     * @return List de Proprietarios em arquivo Json através do parametro id
+     * @return Proprietario em arquivo Json através do parametro id
      * @author Grupo 5 - Rafael
      */
     public Proprietario buscaProprietarioPorId(Long id) {
